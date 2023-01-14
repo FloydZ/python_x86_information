@@ -26,6 +26,76 @@ TRANSLATION = {
 }
 
 
+# TODO remove
+# AStr is a wrapper for strings keeping attributes on ranges of characters
+# This is probably overengineering but its fun+pretty, so whatever
+class AStr:
+    def __init__(self, value, attrs=None):
+        self.value = value
+        if attrs is None:
+            attrs = [(0, 'default')]
+        elif isinstance(attrs, str):
+            attrs = [(0, attrs)]
+        self.attrs = attrs
+    def offset_attrs(self, delta):
+        attrs = [(offset + delta, attr) for offset, attr in self.attrs]
+        # Chop off negative entries, unless they cover the start
+        start = 0
+        for i, [offset, attr] in enumerate(self.attrs):
+            if offset > 0:
+                break
+            start = i
+        return attrs[start:]
+
+    def __add__(self, other):
+        if not isinstance(other, AStr):
+            other = AStr(other)
+        attrs = self.attrs + other.offset_attrs(len(self.value))
+        return AStr(self.value + other.value, attrs)
+    def __radd__(self, other):
+        return AStr(other) + self
+    def __getitem__(self, s):
+        assert isinstance(s, slice)
+        assert s.step == 1 or s.step is None
+        attrs = self.attrs
+        if s.start:
+            # Convert negative indices to positive so offset_attrs() works
+            if s.start < 0:
+                s = slice(max(0, len(self.value)+s.start), s.stop, s.step)
+            attrs = self.offset_attrs(-s.start)
+        if s.stop:
+            attrs = [(offset, attr) for offset, attr in attrs if offset < s.stop]
+        return AStr(self.value[s], attrs=attrs)
+    def __len__(self):
+        return len(self.value)
+
+    # Hacky reimplementations of str methods
+    def splitlines(self):
+        while '\n' in self.value:
+            index = self.value.find('\n')
+            line, self = self[:index], self[index+1:]
+            yield line
+        yield self
+    def rfind(self, *args):
+        return self.value.rfind(*args)
+    def strip(self):
+        # This is dumb+inefficient
+        sub = self.value.lstrip()
+        start = len(self) - len(sub)
+        return self[start:start + len(sub.rstrip())]
+    def lstrip(self):
+        sub = self.value.lstrip()
+        attrs = self.offset_attrs(len(sub) - len(self))
+        return AStr(sub, attrs=attrs)
+    def replace(self, pat, sub):
+        result = AStr('')
+        while pat in self.value:
+            index = self.value.find(pat)
+            result = self.value[:index] + sub
+            self = self[index + 1:]
+        return result + 
+
+
 def parse_intrinsics_guide(path):
     """
     SRC:    
