@@ -14,6 +14,8 @@ class Context:
     def __init__(self, **kwargs):
         self.__dict__.update(**kwargs)
 
+# Dummy obj
+Table = Context
 
 TRANSLATION = {
         "r64": "r64",
@@ -105,6 +107,30 @@ ALL_ARCHES = ['CON', 'WOL', 'NHM', 'WSM', 'SNB', 'IVB', 'HSW', 'BDW', 'SKL',
 # Sentinel value for unknown latency
 MAX_LATENCY = 1e100
 
+# TODO remove
+# ANSI colors for different instruction sets. Approximately match colors in the
+# Intel intrinsics guide, but avoid very saturated, bright, or dark colors.
+INTR_COLORS = {
+    'MMX':          185, #cccc33
+    'SSE':          150, #99cc66
+    'SSE2':         107, #669933
+    'SSE3':         72,  #339966
+    'SSSE3':        153, #99ccff
+    'SSE4.1':       117, #66ccff
+    'SSE4.2':       74,  #3399cc
+    'AVX':          183, #cc99ff
+    'AVX2':         134, #9933cc
+    'FMA':          175, #cc6699
+    'AVX_VNNI':     168, #cc3366
+    'AVX-512':      173, #cc6633
+    'KNC':          172, #cc6600
+    'AMX':          172, #cc6600
+    'SVML':         221, #ffcc33
+    'Other':        244,
+    # Plus some just for uops.info extensions
+    'AVX512':       173,
+    'SSE4':         117,
+}
 
 def parse_uops_info(path):
     root = ET.parse(path)
