@@ -5,6 +5,19 @@ Features:
 =========
  - in memory compiler/assembler via [pycca](https://github.com/campagnola/pycca)
 
+Installation:
+=============
+
+Run:
+```
+git clone https://github.com/FloydZ/python_x86_information
+cd python_x86_information
+./setup.sh
+```
+
+Note the `setup.sh` script at the end. its needed to download all necessary data.
+
+
 Information Source:
 ===================
 
