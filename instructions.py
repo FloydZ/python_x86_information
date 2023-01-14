@@ -93,7 +93,7 @@ class AStr:
             index = self.value.find(pat)
             result = self.value[:index] + sub
             self = self[index + 1:]
-        return result + 
+        return result
 
 
 def parse_intrinsics_guide(path):
