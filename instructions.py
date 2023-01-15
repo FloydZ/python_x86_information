@@ -542,7 +542,8 @@ def find_in_instruction_set(instruction_set, instr, form=[]):
 
 # TODO pass full path
 # Core datasets from intel
-_, data_intr = parse_intrinsics_guide("deps/data-latest.xml")
+_, data_intr_ = parse_intrinsics_guide("deps/data-latest.xml")
+data_intr = transform_intrinsics_guide(data_intr)
 
 # and uops
 _, data_uops = parse_uops_info("deps/instructions.xml")
@@ -555,10 +556,10 @@ def get_intrinsics_guide(tech=None):
 
     returning the intel intrinsic guide
     """
-    global data_intr
+    global data_intr_
 
     # TODO simplify, so not for every request the whole thing needs to be computed
-    data_intr = transform_intrinsics_guide(data_intr, tech=tech)
+    data_intr = transform_intrinsics_guide(data_intr_, tech=tech)
     return data_intr
 
 
@@ -650,3 +651,12 @@ def exec_instructions(instr: Union[str, list[str]],
 # 
 # ins = Instruction()
 # exit(1)
+
+
+
+def information(mnemonic: str, arg=None, arch=None):
+    """
+        recieve usefull infroamtion about an instruction. 
+    """
+    
+    return None
