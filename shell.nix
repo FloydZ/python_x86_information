@@ -17,4 +17,10 @@ mach-nix.nixpkgs.mkShell {
 	pyEnv
 	python3Packages.python-lsp-server
   ];
+
+  # probably you could do it smarter, but who cares
+  shellHook =
+    ''
+	./setup.sh
+    '';
 }

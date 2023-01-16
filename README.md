@@ -17,6 +17,14 @@ cd python_x86_information
 
 Note the `setup.sh` script at the end. its needed to download all necessary data.
 
+Nix:
+====
+simply run:
+```
+nix-shell
+```
+to start the development
+
 Usage:
 ======
 
