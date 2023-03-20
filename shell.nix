@@ -2,25 +2,27 @@ with (import <nixpkgs> {});
 let
   mach-nix = import (builtins.fetchGit {
     url = "https://github.com/DavHau/mach-nix";
-    ref = "refs/tags/3.5.0";  # update this version
+    ref = "refs/tags/3.5.0";
   }) {
-    #python = "python310";
   };
   pyEnv = mach-nix.mkPython rec {
     requirements = builtins.readFile ./requirements.txt;
-    # providers.shapely = "sdist,nixpkgs";
   };
 in
+
+
+
 mach-nix.nixpkgs.mkShell {
   buildInputs = [
-    wget
-	pyEnv
-	python3Packages.python-lsp-server
+     wget
+     pyEnv
   ];
 
-  # probably you could do it smarter, but who cares
-  shellHook =
-    ''
-	./setup.sh
-    '';
+  shellHook = ''
+    export PIP_PREFIX=$(pwd)/_build/pip_packages
+    export PYTHONPATH="$PIP_PREFIX/${pkgs.python3.sitePackages}:$PYTHONPATH"
+    export PATH="$PIP_PREFIX/bin:$PATH"
+    unset SOURCE_DATE_EPOCH
+    sh setup.sh
+  '';
 }

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-from instructions import *
+from python_x86_information.instructions import *
 
 
 
 def test1():
     """
-    test intel intrinsic guide, by simply requesting only a instruction
+    test Intel intrinsic guide, by simply requesting only a instruction
     """
     intel = get_intrinsics_guide()
     assert len(intel["adc"]) == 2
@@ -13,6 +13,7 @@ def test1():
 
 def test_information():
     """
+    test some specific versions of `adc``
     """
     r = information("adc")
     assert len(r) == 2
@@ -32,5 +33,8 @@ def test_information():
     r = information("adc", "rax, rbx")
     assert r == ""
 
+
 if __name__ == "__main__":
+    """
+    """
     test1()

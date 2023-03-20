@@ -1,0 +1,4 @@
+include LICENSE
+include README.md
+include deps/instructions.xml
+include deps/xmls.xsd

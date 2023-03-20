@@ -26,10 +26,12 @@ TRANSLATION = {
 }
 
 
-# TODO remove
-# AStr is a wrapper for strings keeping attributes on ranges of characters
-# This is probably overengineering but its fun+pretty, so whatever
 class AStr:
+    """
+    AStr is a wrapper for strings keeping attributes on ranges of characters
+    This is probably overengineering but its fun+pretty, so whatever
+    """
+
     def __init__(self, value, attrs=None):
         self.value = value
         if attrs is None:
@@ -177,32 +179,11 @@ ALL_ARCHES = ['CON', 'WOL', 'NHM', 'WSM', 'SNB', 'IVB', 'HSW', 'BDW', 'SKL',
 # Sentinel value for unknown latency
 MAX_LATENCY = 1e100
 
-# TODO remove
-# ANSI colors for different instruction sets. Approximately match colors in the
-# Intel intrinsics guide, but avoid very saturated, bright, or dark colors.
-INTR_COLORS = {
-    'MMX':          185, #cccc33
-    'SSE':          150, #99cc66
-    'SSE2':         107, #669933
-    'SSE3':         72,  #339966
-    'SSSE3':        153, #99ccff
-    'SSE4.1':       117, #66ccff
-    'SSE4.2':       74,  #3399cc
-    'AVX':          183, #cc99ff
-    'AVX2':         134, #9933cc
-    'FMA':          175, #cc6699
-    'AVX_VNNI':     168, #cc3366
-    'AVX-512':      173, #cc6633
-    'KNC':          172, #cc6600
-    'AMX':          172, #cc6600
-    'SVML':         221, #ffcc33
-    'Other':        244,
-    # Plus some just for uops.info extensions
-    'AVX512':       173,
-    'SSE4':         117,
-}
 
-def parse_uops_info(path):
+def parse_uops_info(path: str):
+    """
+
+    """
     root = ET.parse(path)
 
     version = root.getroot().attrib['date']
@@ -279,6 +260,8 @@ def parse_uops_info(path):
 
 
 def get_uop_table(ctx, start, stop, folds={}):
+    """
+    """
     rows = []
     prev_ext = ''
     for [i, uop] in enumerate(ctx.filtered_data[start:stop]):
@@ -317,9 +300,11 @@ def get_uop_table(ctx, start, stop, folds={}):
 
 
 def get_uop_subtable(ctx, uop, uop_forms=None):
-    # Get the union of all arches in each form for consistent columns. We sort
-    # by the entries in ALL_ARCHES, but add any extra arches at the end for
-    # future proofing
+    """
+    Get the union of all arches in each form for consistent columns. We sort
+    by the entries in ALL_ARCHES, but add any extra arches at the end for
+    future proofing
+    """
     seen_arches = {arch for form in uop['forms'] for arch in form['arch']}
     arches = [a for a in ALL_ARCHES if a in seen_arches] + \
         list(seen_arches - set(ALL_ARCHES))
@@ -552,9 +537,11 @@ cctx = Context(data_source="", uops_info=data_uops)
 
 def get_intrinsics_guide(tech=None):
     """
-    one of the main entry points of this modul
+    One of the main entry points of this module
+    Returning the Intel intrinsic guide.
 
-    returning the intel intrinsic guide
+    EXAMPLES::
+
     """
     global data_intr_
 
