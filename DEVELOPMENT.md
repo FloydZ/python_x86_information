@@ -35,3 +35,8 @@ python -m twine upload dist/*
 
 For more information, refer to
 [Packaging Projects](https://packaging.python.org/tutorials/packaging-projects/).
+
+## Sphinx:
+```bash
+sphinx-apidoc -f -o source/ ../trees/
+```
