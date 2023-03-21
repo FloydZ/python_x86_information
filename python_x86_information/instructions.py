@@ -14,8 +14,10 @@ class Context:
     def __init__(self, **kwargs):
         self.__dict__.update(**kwargs)
 
+
 # Dummy obj
 Table = Context
+
 
 TRANSLATION = {
         "r64": "r64",
@@ -98,7 +100,7 @@ class AStr:
         return result
 
 
-def parse_intrinsics_guide(path):
+def parse_intrinsics_guide(path: str):
     """
     SRC:    
         https://github.com/zwegner/x86-info-term/blob/master/x86_info_term.py
@@ -138,7 +140,7 @@ def parse_intrinsics_guide(path):
             print('Error while parsing %s:' % name)
             print(ET.tostring(intrinsic, encoding='unicode'))
             raise
-
+    
     return [version, table]
 
 
@@ -255,7 +257,7 @@ def parse_uops_info(path: str):
     # Update the search key for each instruction with all the forms
     for [mnem, uop] in uops_info.items():
         uop['search-key'] = ' '.join(f['search-key'] for f in uop['forms'])
-
+    
     return [version, uops_info]
 
 
@@ -411,6 +413,12 @@ UOP_ARG_REMAP = {
 
 # Get a list of matching uop instruction forms for this instruction
 def get_intr_uop_matches(ctx, mnem, target_form, exact=True):
+    """
+
+    INPUT:
+    - ``test`` -- test
+    EXAMPLES:
+    """
     matching_forms = []
 
     # Filter out some stuff and normalize
@@ -466,6 +474,10 @@ def get_intr_uop_matches(ctx, mnem, target_form, exact=True):
 
 def get_intr_uop_cycles(ctx, mnem, target_form):
     """
+
+    INPUT:
+    - ``test`` -- test
+    EXAMPLES:
     """
     ARCH = "ZEN2"
     if type(target_form) == list:
@@ -483,6 +495,10 @@ def transform_instruction_set(instruction_set):
     transform the list of instruction return by
         `instruction_set = read_instruction_set()`
     into a dictonary index by the instruction name.
+
+    INPUT:
+    - ``test`` -- test
+    EXAMPLES:
     """
     ret = {}
     for entry in instruction_set:
@@ -496,13 +512,18 @@ def transform_instruction_set(instruction_set):
 
 def find_in_instruction_set(instruction_set, instr, form=[]):
     """
-        finds an exact instruction for a given mnemoric
-        e.g.:
-            `find_in_instruction_set(instruction_set. "mov", ["rax", "rbx"])`
-        NOTE:
-            one can pass either the register names or:
-                "r64", "r32", "r16", "m64", ..., "imm8"
-            the implementation will automatically choose the correct representation.
+    finds an exact instruction for a given mnemoric
+    e.g.:
+        `find_in_instruction_set(instruction_set. "mov", ["rax", "rbx"])`
+    
+    NOTE:
+        one can pass either the register names or:
+            "r64", "r32", "r16", "m64", ..., "imm8"
+        the implementation will automatically choose the correct representation.
+
+    INPUT:
+    - ``test`` -- test
+    EXAMPLES:
     """
     if instr not in instruction_set.keys():
         return None
@@ -528,7 +549,7 @@ def find_in_instruction_set(instruction_set, instr, form=[]):
 # TODO pass full path
 # Core datasets from intel
 _, data_intr_ = parse_intrinsics_guide("deps/data-latest.xml")
-data_intr = transform_intrinsics_guide(data_intr)
+data_intr = transform_intrinsics_guide(data_intr_)
 
 # and uops
 _, data_uops = parse_uops_info("deps/instructions.xml")
@@ -539,15 +560,16 @@ def get_intrinsics_guide(tech=None):
     """
     One of the main entry points of this module
     Returning the Intel intrinsic guide.
-
-    EXAMPLES::
+    INPUT:
+    EXAMPLES:
 
     """
     global data_intr_
+    global data_intr
+    if tech is None:
+        return data_intr
 
-    # TODO simplify, so not for every request the whole thing needs to be computed
-    data_intr = transform_intrinsics_guide(data_intr_, tech=tech)
-    return data_intr
+    return transform_intrinsics_guide(data_intr_, tech=tech)
 
 
 def get_uops_info(ARCH=""):
@@ -556,6 +578,9 @@ def get_uops_info(ARCH=""):
 
     TODO implement ARCH selector
 
+    INPUT:
+    - ``test`` -- test
+    EXAMPLES:
     """
     global cctx
     return cctx
@@ -563,9 +588,12 @@ def get_uops_info(ARCH=""):
 
 def get_instruction_set():
     """
-    one of the main entry points of this modul
-
+    one of the main entry points of this module
     from the package `opcodes`
+
+    INPUT:
+    - ``test`` -- test
+    EXAMPLES:
     """
     # taken from: opcodes
     instruction_set = read_instruction_set()
@@ -580,10 +608,14 @@ def exec_instructions(instr: Union[str, list[str]],
     SRC: https://github.com/pycca/pycca
     actually executes instructions
     
+
     instr:  list or string of assembly instrucitons
     in_registers
     NOTE: the input assembly code should and with a `ret` instruction, if not
         one is automatically appended.
+
+    INPUT:
+    EXAMPLES:
     """
     if type(instr) == list:
         instr = "\n".join(instr)
@@ -631,6 +663,8 @@ def exec_instructions(instr: Union[str, list[str]],
     val = fn()
     return val
 
+
+# TODO
 # class Instruction:
 #     def __init__(self):
 #         pprint.pprint(instruction_set[0].forms[17].__dict__)
@@ -640,10 +674,26 @@ def exec_instructions(instr: Union[str, list[str]],
 # exit(1)
 
 
-
 def information(mnemonic: str, arg=None, arch=None):
     """
-        recieve usefull infroamtion about an instruction. 
+    Receive useful information about an instruction. 
+    TODO correctly model whats in instructions
+
+    INPUT:
+
+    EXAMPLES:
+
     """
-    
-    return None
+    intel = get_intrinsics_guide(arch)
+    try:
+        tmp = intel[mnemonic]
+
+        # TODO here filtering of args
+        return tmp
+    except Exception as e:
+        return e
+
+
+if __name__ == "__main__":
+    ret = get_intrinsics_guide()
+    print(ret)
