@@ -3,8 +3,7 @@ let
   mach-nix = import (builtins.fetchGit {
     url = "https://github.com/DavHau/mach-nix";
     ref = "refs/tags/3.5.0";
-  }) {
-  };
+  }) {};
   pyEnv = mach-nix.mkPython rec {
     requirements = builtins.readFile ./requirements.txt;
   };
@@ -15,7 +14,9 @@ in
 mach-nix.nixpkgs.mkShell {
   buildInputs = [
      wget
+	 antlr4_8
      pyEnv
+	 python3Packages.antlr4-python3-runtime
   ];
 
   shellHook = ''

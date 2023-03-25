@@ -4,12 +4,14 @@ from opcodes.x86_64 import read_instruction_set
 import xml.etree.ElementTree as ET
 import re
 import ctypes
+import pprint
+import logging
 from typing import Union, Any
 
 
 class Context:
     """
-    Helper class for parsing intrinsic guide
+    Helper class for parsing intrinsic guide.
     """
     def __init__(self, **kwargs):
         self.__dict__.update(**kwargs)
@@ -18,13 +20,323 @@ class Context:
 # Dummy obj
 Table = Context
 
-
+# Helper dictionary to translate from registers names to generic names.
+# NOTE:
+#    The dicionary can also handle uppercase inputs
+# EXAMPLE:
+#   "r64" = TRANSLATION["rax"]
+#   "r16" = TRANSLATION["sp"]
 TRANSLATION = {
-        "r64": "r64",
-        "rax": "r64",
-        "rbx": "r64",
-        "rsp": "r64",
-        "rbp": "r64",
+    "i8": "i8",
+
+    "r8": "r8",
+    "al": "r8",
+    "ah": "r8",
+    "bl": "r8",
+    "bh": "r8",
+    "cl": "r8",
+    "ch": "r8",
+    "dl": "r8",
+    "dh": "r8",
+    "bpl": "r8",
+    "sil": "r8",
+    "dil": "r8",
+    "spl": "r8",
+    "r8b": "r8",
+    "r9b": "r8",
+    "r10b": "r8",
+    "r11b": "r8",
+    "r12b": "r8",
+    "r13b": "r8",
+    "r14b": "r8",
+    "r15b": "r8",
+
+    "r16": "r16",
+    "ax": "r16",
+    "bx": "r16",
+    "cx": "r16",
+    "dx": "r16",
+    "bp": "r16",
+    "si": "r16",
+    "di": "r16",
+    "sp": "r16",
+    "ip": "r16",
+    "r8w": "r16",
+    "r9w": "r16",
+    "r10w": "r16",
+    "r11w": "r16",
+    "r12w": "r16",
+    "r13w": "r16",
+    "r14w": "r16",
+    "r15w": "r16",
+
+    "eax": "r32",
+    "ebx": "r32",
+    "ecx": "r32",
+    "edx": "r32",
+    "ebp": "r32",
+    "esi": "r32",
+    "edi": "r32",
+    "esp": "r32",
+    "eip": "r32",
+    "r8d": "r32",
+    "r9d": "r32",
+    "r10d": "r32",
+    "r11d": "r32",
+    "r12d": "r32",
+    "r13d": "r32",
+    "r14d": "r32",
+    "r15d": "r32",
+
+    "r64": "r64",
+    "rax": "r64",
+    "rbx": "r64",
+    "rcx": "r64",
+    "rdx": "r64",
+    "rbp": "r64",
+    "rsi": "r64",
+    "rdi": "r64",
+    "rip": "r64",
+    "r8d": "r64",
+    "r9d": "r64",
+    "r10d": "r64",
+    "r11d": "r64",
+    "r12d": "r64",
+    "r13d": "r64",
+    "r14d": "r64",
+    "r15d": "r64",
+
+    "mm0": "r64",
+    "mm1": "r64",
+    "mm2": "r64",
+    "mm3": "r64",
+    "mm4": "r64",
+    "mm5": "r64",
+    "mm6": "r64",
+    "mm7": "r64",
+
+    "xmm": "xmm",
+    "xmm0": "xmm",
+    "xmm1": "xmm",
+    "xmm2": "xmm",
+    "xmm4": "xmm",
+    "xmm5": "xmm",
+    "xmm6": "xmm",
+    "xmm7": "xmm",
+    "xmm8": "xmm",
+    "xmm9": "xmm",
+    "xmm10": "xmm",
+    "xmm11": "xmm",
+    "xmm12": "xmm",
+    "xmm13": "xmm",
+    "xmm14": "xmm",
+    "xmm15": "xmm",
+
+    "ymm": "ymm",
+    "ymm0": "ymm",
+    "ymm1": "ymm",
+    "ymm2": "ymm",
+    "ymm4": "ymm",
+    "ymm5": "ymm",
+    "ymm6": "ymm",
+    "ymm7": "ymm",
+    "ymm8": "ymm",
+    "ymm9": "ymm",
+    "ymm10": "ymm",
+    "ymm11": "ymm",
+    "ymm12": "ymm",
+    "ymm13": "ymm",
+    "ymm14": "ymm",
+    "ymm15": "ymm",
+
+    "zmm": "zmm",
+    "zmm0": "zmm",
+    "zmm1": "zmm",
+    "zmm2": "zmm",
+    "zmm4": "zmm",
+    "zmm5": "zmm",
+    "zmm6": "zmm",
+    "zmm7": "zmm",
+    "zmm8": "zmm",
+    "zmm9": "zmm",
+    "zmm10": "zmm",
+    "zmm11": "zmm",
+    "zmm12": "zmm",
+    "zmm13": "zmm",
+    "zmm14": "zmm",
+    "zmm15": "zmm",
+    "zmm16": "zmm",
+    "zmm17": "zmm",
+    "zmm18": "zmm",
+    "zmm19": "zmm",
+    "zmm20": "zmm",
+    "zmm21": "zmm",
+    "zmm22": "zmm",
+    "zmm23": "zmm",
+    "zmm24": "zmm",
+    "zmm25": "zmm",
+    "zmm26": "zmm",
+    "zmm27": "zmm",
+    "zmm28": "zmm",
+    "zmm29": "zmm",
+    "zmm30": "zmm",
+    "zmm31": "zmm",
+
+    # Uppercase
+    "R8": "r8",
+    "AL": "r8",
+    "AH": "r8",
+    "BL": "r8",
+    "BH": "r8",
+    "CL": "r8",
+    "CH": "r8",
+    "DL": "r8",
+    "DH": "r8",
+    "BPL": "r8",
+    "SIL": "r8",
+    "DIL": "r8",
+    "SPL": "r8",
+    "R8B": "r8",
+    "R9B": "r8",
+    "R10B": "r8",
+    "R11B": "r8",
+    "R12B": "r8",
+    "R13B": "r8",
+    "R14B": "r8",
+    "R15B": "r8",
+
+    "R16": "r16",
+    "AX": "r16",
+    "BX": "r16",
+    "CX": "r16",
+    "DX": "r16",
+    "BP": "r16",
+    "SI": "r16",
+    "DI": "r16",
+    "SP": "r16",
+    "IP": "r16",
+    "R8W": "r16",
+    "R9W": "r16",
+    "R10W": "r16",
+    "R11W": "r16",
+    "R12W": "r16",
+    "R13W": "r16",
+    "R14W": "r16",
+    "R15W": "r16",
+
+    "EAX": "r32",
+    "EBX": "r32",
+    "ECX": "r32",
+    "EDX": "r32",
+    "EBP": "r32",
+    "ESI": "r32",
+    "EDI": "r32",
+    "ESP": "r32",
+    "EIP": "r32",
+    "R8D": "r32",
+    "R9D": "r32",
+    "R10D": "r32",
+    "R11D": "r32",
+    "R12D": "r32",
+    "R13D": "r32",
+    "R14D": "r32",
+    "R15D": "r32",
+
+    "R64": "r64",
+    "RAX": "r64",
+    "RBX": "r64",
+    "RCX": "r64",
+    "RDX": "r64",
+    "RBP": "r64",
+    "RSI": "r64",
+    "RDI": "r64",
+    "RIP": "r64",
+    "R8D": "r64",
+    "R9D": "r64",
+    "R10D": "r64",
+    "R11D": "r64",
+    "R12D": "r64",
+    "R13D": "r64",
+    "R14D": "r64",
+    "R15D": "r64",
+
+    "MM0": "r64",
+    "MM1": "r64",
+    "MM2": "r64",
+    "MM3": "r64",
+    "MM4": "r64",
+    "MM5": "r64",
+    "MM6": "r64",
+    "MM7": "r64",
+
+    "XMM0": "xmm",
+    "XMM1": "xmm",
+    "XMM2": "xmm",
+    "XMM4": "xmm",
+    "XMM5": "xmm",
+    "XMM6": "xmm",
+    "XMM7": "xmm",
+    "XMM8": "xmm",
+    "XMM9": "xmm",
+    "XMM10": "xmm",
+    "XMM11": "xmm",
+    "XMM12": "xmm",
+    "XMM13": "xmm",
+    "XMM14": "xmm",
+    "XMM15": "xmm",
+
+    "YMM0": "ymm",
+    "YMM1": "ymm",
+    "YMM2": "ymm",
+    "YMM4": "ymm",
+    "YMM5": "ymm",
+    "YMM6": "ymm",
+    "YMM7": "ymm",
+    "YMM8": "ymm",
+    "YMM9": "ymm",
+    "YMM10": "ymm",
+    "YMM11": "ymm",
+    "YMM12": "ymm",
+    "YMM13": "ymm",
+    "YMM14": "ymm",
+    "YMM15": "ymm",
+
+    "ZMM0": "zmm",
+    "ZMM1": "zmm",
+    "ZMM2": "zmm",
+    "ZMM4": "zmm",
+    "ZMM5": "zmm",
+    "ZMM6": "zmm",
+    "ZMM7": "zmm",
+    "ZMM8": "zmm",
+    "ZMM9": "zmm",
+    "ZMM10": "zmm",
+    "ZMM11": "zmm",
+    "ZMM12": "zmm",
+    "ZMM13": "zmm",
+    "ZMM14": "zmm",
+    "ZMM15": "zmm",
+    "ZMM16": "zmm",
+    "ZMM17": "zmm",
+    "ZMM18": "zmm",
+    "ZMM19": "zmm",
+    "ZMM20": "zmm",
+    "ZMM21": "zmm",
+    "ZMM22": "zmm",
+    "ZMM23": "zmm",
+    "ZMM24": "zmm",
+    "ZMM25": "zmm",
+    "ZMM26": "zmm",
+    "ZMM27": "zmm",
+    "ZMM28": "zmm",
+    "ZMM29": "zmm",
+    "ZMM30": "zmm",
+    "ZMM31": "zmm",
+}
+
+# special translation dict for the intel dataset
+INTEL_TRANSLATION = {
+    "i8": "imm8",
 }
 
 
@@ -102,9 +414,11 @@ class AStr:
 
 def parse_intrinsics_guide(path: str):
     """
-    SRC:    
-        https://github.com/zwegner/x86-info-term/blob/master/x86_info_term.py
-    parses the intel instruction file `data-latest.xml`
+    SRC: https://github.com/zwegner/x86-info-term/blob/master/x86_info_term.py
+    
+    Parses the intel instruction file `data-latest.xml`.
+
+
     """
     root = ET.parse(path)
 
@@ -184,6 +498,18 @@ MAX_LATENCY = 1e100
 
 def parse_uops_info(path: str):
     """
+    Parses `instructions.xml` from uops.info
+
+    INPUT:
+    - ``path`` -- path to the the `instructions.xml` from `uops.info`. This file should
+                  be automatically donwloaded by `setup.sh`. Alternativly you
+                  can download it with:
+                    wget https://www.uops.info/instructions.xml
+    
+    EXAMPLES:
+        >>> from python_x86_information import parse_uops_info
+        >>> _, table = parse_uops_info("deps/instructions.xml")
+        >>> print(table)
 
     """
     root = ET.parse(path)
@@ -261,8 +587,17 @@ def parse_uops_info(path: str):
     return [version, uops_info]
 
 
-def get_uop_table(ctx, start, stop, folds={}):
+def get_uop_table(ctx: Context, start: int, stop: int, folds={}):
     """
+
+    INPUT:
+    - ``ctx`` -- context
+    - ``start`` -- 
+    - ``stop`` -- 
+    - ``folds`` -- 
+    
+    EXAMPLES:
+
     """
     rows = []
     prev_ext = ''
@@ -301,11 +636,20 @@ def get_uop_table(ctx, start, stop, folds={}):
     return Table(rows=rows, widths=widths, alignment=[0, 0, 0, 0])
 
 
-def get_uop_subtable(ctx, uop, uop_forms=None):
+def get_uop_subtable(ctx: Context, uop, uop_forms=None):
     """
     Get the union of all arches in each form for consistent columns. We sort
     by the entries in ALL_ARCHES, but add any extra arches at the end for
-    future proofing
+    future proofing.
+
+
+    INPUT:
+    - ``ctx`` -- 
+    - ``uop`` -- 
+    - ``uop_forms`` -- 
+    
+    EXAMPLES:
+
     """
     seen_arches = {arch for form in uop['forms'] for arch in form['arch']}
     arches = [a for a in ALL_ARCHES if a in seen_arches] + \
@@ -411,29 +755,116 @@ UOP_ARG_REMAP = {
 }
 
 
-# Get a list of matching uop instruction forms for this instruction
-def get_intr_uop_matches(ctx, mnem, target_form, exact=True):
+def get_intr_uop_matches(ctx: Context, mnem: str, target_form: Union[str, list[str]], exact=True):
     """
+    TODO: momentan 
+    Get a list of matching uop instruction forms for the given mnemonic 
+    Returns a list of matching instructions. If no instruction is found, an
+    empty list is returned
 
+    
     INPUT:
-    - ``test`` -- test
+    - ``ctx`` -- context
+    - ``mnem`` -- mnemonic to analyse
+    - ``target_form`` -- arguments of the mnemonic
+    - ``exact`` -- 
+
     EXAMPLES:
+
+        >>> get_intr_uop_matches(CCTX, "adc", ["rax", "r64"])
+        [ {'form': '{load} adc_11 (r64, r64)', 
+           'extension': 'BASE', 
+           'search-key': '{load} adc_11 (r64, r64) base', 
+           'arch': {'CON': ('2*p015', '1.00', ((1, True), (2, True))), 
+                    'WOL': ('2*p015', '1.00', ((1, True), (2, True))), 
+                    'NHM': ('2*p015', '1.00', ((1, True), (2, True))), 
+                    'WSM': ('2*p015', '1.00', ((1, True), (2, True))),
+                    ....}}]
+
+        >>> get_intr_uop_matches(CCTX, "adc", ["rax", "r64"], exact=False)
+        []
+
+        >>> get_intr_uop_matches(CCTX, "adc", ["r64", "r64"], exact=False)
+        [{'form': 'adc (m64, r64)', 
+          'extension': 'BASE', 
+          'search-key': 'adc (m64, r64) base', 
+          'arch': {'CON': ('3*p015+p2+p3+p4', '2.00', ((1, True), (10, False))), 
+                   'WOL': ('3*p015+p2+p3+p4', '2.00', ((1, True), (10, False))), 
+                   'NHM': ('3*p015+p2+p3+p4', '2.00', ((1, True), (8, False))), 
+                   'WSM': ('3*p015+p2+p3+p4', '2.00', ((1, True), (8, False))), 
+                   ...}}, 
+         {'form': '{load} adc_11 (r64, r64)', 
+          'extension': 'BASE', 
+          'search-key': '{load} adc_11 (r64, r64) base', 
+          'arch': {...
+                   'ZEN+': ('', '0.50', ((1, True), (1, True))), 
+                   'ZEN2': ('', '0.50', ((1, True), (1, True))), 
+                   'ZEN3': ('', '0.50', ((1, True), (1, True))), 
+                   'ZEN4': ('', '0.50', ((1, True), (1, True)))}}, 
+         {'form': 'adc (r64, m64)', 
+          'extension': 'BASE', 
+          'search-key': 'adc (r64, m64) base', 
+          'arch': {'CON': ('2*p015+p2', '1.00', ((2, True), (5, True))), 
+                   'WOL': ('2*p015+p2', '1.00', ((2, True), (5, True))), 
+                   'NHM': ('2*p015+p2', '1.00', ((3, True), (5, True))),
+                   ...}}, 
+        {'form': '{store} adc_13 (r64, r64)', 
+         'extension': 'BASE', 
+         'search-key': '{store} adc_13 (r64, r64) base', 
+         'arch': {'CON': ('2*p015', '1.00', ((1, True), (2, True))), 
+                  'WOL': ('2*p015', '1.00', ((1, True), (2, True))), 
+                  'NHM': ('2*p015', '1.00', ((1, True), (2, True))), 
+                  'WSM': ('2*p015', '1.00', ((1, True), (2, True))),
+                  ...}}]
+        {'form': 'lock adc_lock (m64, r64)', 
+         'extension': 'BASE', 
+         'search-key': 'lock adc_lock (m64, r64) base', 
+         'arch': {'CON': ('2*p015+p05+p2+2*p3+p4+p5', '21.00', ((13, True), (31, False))), 
+                  'WOL': ('2*p015+p2+2*p3+p4+2*p5', '21.00', ((13, True), (31, False))), 
+                  'NHM': ('3*p015+p2+p3+p4', '20.00', ((11, True), (28, False))), 
+                  'WSM': ('3*p015+p2+p3+p4', '19.00', ((11, True), (28, False))), 
+                  'SNB': ('5*p015+p05+p1+2*p23+p4+2*p5', '23.00', ((13, True), (34, False)))
+                  ...}}]
+
     """
+    # return value
     matching_forms = []
-
-    # Filter out some stuff and normalize
-    target_form = (target_form.replace(' {z}', ', z').replace(' {k}', ', k')
-                   .replace(' {er}', '').replace(' {sae}', '').replace(' ', ''))
-
+    
     # Create a set of matching arguments for each instruction argument
     intr_args = []
-    for arg in target_form.split(','):
+    
+    if mnem not in ctx.uops_info:
+        return []
+
+    # translate to list
+    if type(target_form) == str:
+        target_form = target_form.split(',')
+
+    for arg in target_form:
+
+        # if the argumetn is a number replace it with i8
+        if type(arg) == int:
+            arg = "i8"
+        else:
+            try:
+                arg = int(arg)
+                arg = "i8"
+            except:
+                # Filter out some stuff and normalize
+                arg = (arg.replace(' {z}', ', z')
+                          .replace(' {k}', ', k')
+                          .replace(' {er}', '')
+                          .replace(' {sae}', '')
+                          .replace(' ', ''))
+                arg = TRANSLATION[arg]
+
         arg = INTR_ARG_REMAP.get(arg, arg)
+
         if not exact:
             # Add an extra option for register/memory matching
             arg_opts = {arg} | INTR_ARG_EXTRA.get(arg, set())
         else:
-            arg_opts = {TRANSLATION[arg]}
+            arg_opts = { TRANSLATION[arg] }
         intr_args.append(arg_opts)
 
     # Loop through all uop forms with the same mnemonic
@@ -469,36 +900,65 @@ def get_intr_uop_matches(ctx, mnem, target_form, exact=True):
                 matching_forms.append(form)
         else:
             matching_forms.append(form)
+
     return matching_forms
 
 
-def get_intr_uop_cycles(ctx, mnem, target_form):
+def get_intr_uop_cycles(ctx: Context, mnem: str, target_form: Union[str, list[str]], 
+                        ARCH="ZEN2", exact=True):
     """
-
-    INPUT:
-    - ``test`` -- test
-    EXAMPLES:
-    """
-    ARCH = "ZEN2"
-    if type(target_form) == list:
-        target_form = ",".join(target_form)
     
-    instr = get_intr_uop_matches(ctx, mnem, target_form)
-    # pprint.pprint(instr)
+    Returns the instruction and expected cycles to execute the instruction on the
+    given arch.
+    If valid instructions are found, which maches the mnemonic ALL will be returned
+     
+    INPUT:
+    - ``ctx`` -- Context
+    - ``mnem`` -- mnemonic to analyse
+    - ``target_form`` -- arguments of the mnemonic, e.g:
+                ["rax", "rbx"]
+                ["r64", "r64"]
+                "rax, r64"
+                "rbx, rcx"
+    - ``ARCH`` -- architecture to base the analyse on
+    - ``exact`` -- if true only exact matches of mnemoric argument are returned.
+
+    EXAMPLES:
+
+        >>> _, cycles = get_intr_uop_cycles(CCTX, "adc", ["r64", "rax"])
+        >>> print(cycles)
+        [0.5, 0.5]
+
+    """
+    if ARCH not in ALL_ARCHES:
+        logging.warning("invalid arch")
+        return None, None
+
+    instr = get_intr_uop_matches(ctx, mnem, target_form, exact)
+    if len(instr) == 0:
+        logging.info("no instruction found")
+        return None, None
+
     cycles = [float(a['arch'][ARCH][1]) for a in instr]
-    return instr[0], cycles[0]
+    return instr, cycles
 
 
 def transform_instruction_set(instruction_set):
     """
     SRC: https://github.com/Maratyszcza/Opcodes
-    transform the list of instruction return by
-        `instruction_set = read_instruction_set()`
+    transform the list of instruction return by `instruction_set = read_instruction_set()`
     into a dictonary index by the instruction name.
 
     INPUT:
-    - ``test`` -- test
+
+    - ``instruction_set`` -- output of `read_instruction_set()`
+
     EXAMPLES:
+    
+        >>> _, data_intr_ = parse_intrinsics_guide("deps/data-latest.xml")
+        >>> data_intr = transform_intrinsics_guide(data_intr_)
+        >>> print(data_intr)
+
     """
     ret = {}
     for entry in instruction_set:
@@ -510,11 +970,11 @@ def transform_instruction_set(instruction_set):
     return ret
 
 
-def find_in_instruction_set(instruction_set, instr, form=[]):
+def find_in_instruction_set(instruction_set: dict, instr: str,
+                            target_form: Union[str, list[str]]):
     """
-    finds an exact instruction for a given mnemoric
-    e.g.:
-        `find_in_instruction_set(instruction_set. "mov", ["rax", "rbx"])`
+    finds an exact instruction for a given mnemoric. Searches in the intel dataset.
+    If no instruction is found, None is returned
     
     NOTE:
         one can pass either the register names or:
@@ -522,53 +982,81 @@ def find_in_instruction_set(instruction_set, instr, form=[]):
         the implementation will automatically choose the correct representation.
 
     INPUT:
+
     - ``test`` -- test
+    - ``test`` -- test
+    - ``test`` -- test
+    - ``test`` -- test
+    
     EXAMPLES:
+
+        >>> find_in_instruction_set(instruction_set, "mov", ["rax", "rbx"])
     """
     if instr not in instruction_set.keys():
+        logging.warning("instruction {0} not found".format(instr))
         return None
     
-    nr_args = len(form)
-    trans_form = [TRANSLATION[f] for f in form]
+    nr_args = len(target_form)
+    trans_form = []
+    for arg in target_form:
+        # if the argumetn is a number replace it with i8
+        if type(arg) == int:
+            arg = "imm8"
+        else:
+            try:
+                arg = int(arg)
+                arg = "imm8"
+            except:
+                # Filter out some stuff and normalize
+                arg = TRANSLATION[arg]
+        trans_form.append(arg) 
+    
     pos_inf = instruction_set[instr]
+    args = ", ".join(trans_form)
+    
+    ret = []
+    for inf in pos_inf:
+        insts = inf["insts"]
+        assert len(insts) == 1
+        insts = insts[0]
+        assert len(insts) == 2
+        assert insts[0] == instr
 
-    for inf in pos_inf.forms:
-        if len(inf.operands) == nr_args:
-            same = True
-            for i in range(nr_args):
-                if inf.operands[i].type != trans_form[i]:
-                    same = False
-                    break
+        if (insts[1] == args):
+            ret.append(inf)
 
-            if same:
-                return inf
-
-    return None
+    return ret
 
 
-# TODO pass full path
+# TODO move somewhere 
 # Core datasets from intel
 _, data_intr_ = parse_intrinsics_guide("deps/data-latest.xml")
-data_intr = transform_intrinsics_guide(data_intr_)
+CCTX_INTEL = transform_intrinsics_guide(data_intr_)
 
 # and uops
 _, data_uops = parse_uops_info("deps/instructions.xml")
-cctx = Context(data_source="", uops_info=data_uops)
+CCTX = Context(data_source="", uops_info=data_uops)
 
 
 def get_intrinsics_guide(tech=None):
     """
     One of the main entry points of this module
     Returning the Intel intrinsic guide.
+
     INPUT:
+        - ``tech`` -- either None or an architecture 
+            TODO
+
+
     EXAMPLES:
+        >>> 
 
     """
-    global data_intr_
-    global data_intr
+    global CCTX_INTEL 
     if tech is None:
-        return data_intr
+        return CCTX_INTEL
 
+    global data_intr_
     return transform_intrinsics_guide(data_intr_, tech=tech)
 
 
@@ -582,8 +1070,8 @@ def get_uops_info(ARCH=""):
     - ``test`` -- test
     EXAMPLES:
     """
-    global cctx
-    return cctx
+    global CCTX
+    return CCTX
 
 
 def get_instruction_set():
@@ -680,9 +1168,13 @@ def information(mnemonic: str, arg=None, arch=None):
     TODO correctly model whats in instructions
 
     INPUT:
+    - ``mnemonic`` -- instruction mnemonic to fetch information from
+    - ``arg`` --
+    - ``arch`` --
 
     EXAMPLES:
-
+        >>> from python_x86_information import information
+        >>> information("adx")
     """
     intel = get_intrinsics_guide(arch)
     try:
@@ -695,5 +1187,15 @@ def information(mnemonic: str, arg=None, arch=None):
 
 
 if __name__ == "__main__":
-    ret = get_intrinsics_guide()
-    print(ret)
+    #ins = information("adc")
+    #print(ins)
+    #tmp = get_intr_uop_matches(CCTX, "adc", ["r64", "r64"], False)
+    #tmp = get_intr_uop_matches(CCTX, "adc", ["r64", "rax"])
+    #tmp = get_intr_uop_matches(CCTX, "vpermq", ["ymm1", "ymm2", 2])
+    #print(tmp)
+    #isnt, cycles = get_intr_uop_cycles(CCTX, "adc", ["r64", "rax"])
+    #print(cycles)
+    tmp = find_in_instruction_set(CCTX_INTEL, "vpermq", ["ymm1", "ymm2", "1"])
+    print(tmp)
+    
+
