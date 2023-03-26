@@ -87,16 +87,66 @@ dst[MAX:256] := 0
 import sys
 from antlr4 import *
 from antlr4.tree import Trees
+from antlr4.error.ErrorListener import ErrorListener
+
 from python_x86_information.intel_operation_languageLexer import intel_operation_languageLexer as Lexer
 from python_x86_information.intel_operation_languageParser import intel_operation_languageParser as Parser
+from python_x86_information.intel_operation_languageVisitor import intel_operation_languageVisitor as Visitor
+
+
+# SRC: https://stackoverflow.com/questions/62301218/antlr4-python-in-unittest-how-to-abort-on-any-error
+class MyErrorListener(ErrorListener):
+    def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
+        raise Exception("ERROR: when parsing line %d column %d: %s\n" % \
+                        (line, column, msg))
+
+
+def run(input: str):
+    """
+    runs the parser on the fiven input.
+    Returns:
+        True: on error
+        False: on success
+    """
+    error_listener = MyErrorListener()
+    input_stream = InputStream(input)
+    lexer = Lexer(input_stream)
+    lexer.removeErrorListeners()
+    lexer.addErrorListener(error_listener)
+    
+    stream = CommonTokenStream(lexer)
+    
+    parser = Parser(stream)
+    parser.removeErrorListeners()
+    parser.addErrorListener(error_listener)
+    
+    try:
+        tree = parser.prog()
+        return False
+    except Exception as e:
+        print(input)
+        print(e)
+        return True
 
 
 def main(argv):
-    input_stream = InputStream('tmp := 1')
-    lexer = Lexer(input_stream)
-    stream = CommonTokenStream(lexer)
-    parser = Parser(stream)
-    tree = parser.prog()
+    if run("tmp := tmp"):
+        return
+
+    if run("tmp[out+31:out] := tmp[31:0]"):
+        return
+
+    if run("tmp[out+31:out] := 0"):
+        return
+
+    if run("tmp[0] := tmp[32]"):
+        return
+
+    if run("tmp := tmp + 1"):
+        return
+
+    if run("tmp[32:0] := a[31:0] + b[31:0] + ( cin > 0 ? 1 : 0 )"):
+        return
 
 if __name__ == "__main__":
     main(sys.argv)

@@ -11,16 +11,16 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\7")
-        buf.write("\33\4\2\t\2\4\3\t\3\4\4\t\4\3\2\7\2\n\n\2\f\2\16\2\r\13")
-        buf.write("\2\3\2\3\2\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\5\4\31\n\4")
-        buf.write("\3\4\2\2\5\2\4\6\2\2\2\33\2\13\3\2\2\2\4\20\3\2\2\2\6")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\16")
+        buf.write("\32\4\2\t\2\4\3\t\3\4\4\t\4\3\2\7\2\n\n\2\f\2\16\2\r\13")
+        buf.write("\2\3\2\3\2\3\3\3\3\3\4\3\4\3\4\6\4\26\n\4\r\4\16\4\27")
+        buf.write("\3\4\2\2\5\2\4\6\2\2\2\30\2\13\3\2\2\2\4\20\3\2\2\2\6")
         buf.write("\22\3\2\2\2\b\n\5\4\3\2\t\b\3\2\2\2\n\r\3\2\2\2\13\t\3")
         buf.write("\2\2\2\13\f\3\2\2\2\f\16\3\2\2\2\r\13\3\2\2\2\16\17\7")
         buf.write("\2\2\3\17\3\3\2\2\2\20\21\5\6\4\2\21\5\3\2\2\2\22\23\7")
-        buf.write("\6\2\2\23\30\7\5\2\2\24\31\5\6\4\2\25\31\7\7\2\2\26\31")
-        buf.write("\7\4\2\2\27\31\7\6\2\2\30\24\3\2\2\2\30\25\3\2\2\2\30")
-        buf.write("\26\3\2\2\2\30\27\3\2\2\2\31\7\3\2\2\2\4\13\30")
+        buf.write("\4\2\2\23\25\7\3\2\2\24\26\7\4\2\2\25\24\3\2\2\2\26\27")
+        buf.write("\3\2\2\2\27\25\3\2\2\2\27\30\3\2\2\2\30\7\3\2\2\2\4\13")
+        buf.write("\27")
         return buf.getvalue()
 
 
@@ -34,10 +34,11 @@ class intel_operation_languageParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "':='" ]
+    literalNames = [ "<INVALID>", "':='" ]
 
-    symbolicNames = [ "<INVALID>", "WS", "OPERATION", "DEFINITION", "NAME", 
-                      "INT" ]
+    symbolicNames = [ "<INVALID>", "DEFINITION", "EXPRESSION", "TERNARYOPERATOR", 
+                      "COMPARISON", "VARIABLE", "ACCESSOPERATOR", "ACCESSOPERATORNAME", 
+                      "OPERATOR", "NAME", "INT", "EOL", "WS" ]
 
     RULE_prog = 0
     RULE_base_block = 1
@@ -46,11 +47,18 @@ class intel_operation_languageParser ( Parser ):
     ruleNames =  [ "prog", "base_block", "base_line" ]
 
     EOF = Token.EOF
-    WS=1
-    OPERATION=2
-    DEFINITION=3
-    NAME=4
-    INT=5
+    DEFINITION=1
+    EXPRESSION=2
+    TERNARYOPERATOR=3
+    COMPARISON=4
+    VARIABLE=5
+    ACCESSOPERATOR=6
+    ACCESSOPERATORNAME=7
+    OPERATOR=8
+    NAME=9
+    INT=10
+    EOL=11
+    WS=12
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -107,7 +115,7 @@ class intel_operation_languageParser ( Parser ):
             self.state = 9
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==intel_operation_languageParser.NAME:
+            while _la==intel_operation_languageParser.EXPRESSION:
                 self.state = 6
                 self.base_block()
                 self.state = 11
@@ -178,24 +186,14 @@ class intel_operation_languageParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def NAME(self, i:int=None):
+        def EXPRESSION(self, i:int=None):
             if i is None:
-                return self.getTokens(intel_operation_languageParser.NAME)
+                return self.getTokens(intel_operation_languageParser.EXPRESSION)
             else:
-                return self.getToken(intel_operation_languageParser.NAME, i)
+                return self.getToken(intel_operation_languageParser.EXPRESSION, i)
 
         def DEFINITION(self):
             return self.getToken(intel_operation_languageParser.DEFINITION, 0)
-
-        def base_line(self):
-            return self.getTypedRuleContext(intel_operation_languageParser.Base_lineContext,0)
-
-
-        def INT(self):
-            return self.getToken(intel_operation_languageParser.INT, 0)
-
-        def OPERATION(self):
-            return self.getToken(intel_operation_languageParser.OPERATION, 0)
 
         def getRuleIndex(self):
             return intel_operation_languageParser.RULE_base_line
@@ -224,32 +222,22 @@ class intel_operation_languageParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 16
-            self.match(intel_operation_languageParser.NAME)
+            self.match(intel_operation_languageParser.EXPRESSION)
             self.state = 17
             self.match(intel_operation_languageParser.DEFINITION)
-            self.state = 22
+            self.state = 19 
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
-            if la_ == 1:
-                self.state = 18
-                self.base_line()
-                pass
+            _alt = 1
+            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
+                    self.state = 18
+                    self.match(intel_operation_languageParser.EXPRESSION)
 
-            elif la_ == 2:
-                self.state = 19
-                self.match(intel_operation_languageParser.INT)
-                pass
-
-            elif la_ == 3:
-                self.state = 20
-                self.match(intel_operation_languageParser.OPERATION)
-                pass
-
-            elif la_ == 4:
-                self.state = 21
-                self.match(intel_operation_languageParser.NAME)
-                pass
-
+                else:
+                    raise NoViableAltException(self)
+                self.state = 21 
+                self._errHandler.sync(self)
+                _alt = self._interp.adaptivePredict(self._input,1,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
