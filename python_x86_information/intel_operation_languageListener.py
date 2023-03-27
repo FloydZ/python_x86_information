@@ -17,21 +17,93 @@ class intel_operation_languageListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by intel_operation_languageParser#base_block.
-    def enterBase_block(self, ctx:intel_operation_languageParser.Base_blockContext):
+    # Enter a parse tree produced by intel_operation_languageParser#expression.
+    def enterExpression(self, ctx:intel_operation_languageParser.ExpressionContext):
         pass
 
-    # Exit a parse tree produced by intel_operation_languageParser#base_block.
-    def exitBase_block(self, ctx:intel_operation_languageParser.Base_blockContext):
+    # Exit a parse tree produced by intel_operation_languageParser#expression.
+    def exitExpression(self, ctx:intel_operation_languageParser.ExpressionContext):
         pass
 
 
-    # Enter a parse tree produced by intel_operation_languageParser#base_line.
-    def enterBase_line(self, ctx:intel_operation_languageParser.Base_lineContext):
+    # Enter a parse tree produced by intel_operation_languageParser#definition.
+    def enterDefinition(self, ctx:intel_operation_languageParser.DefinitionContext):
         pass
 
-    # Exit a parse tree produced by intel_operation_languageParser#base_line.
-    def exitBase_line(self, ctx:intel_operation_languageParser.Base_lineContext):
+    # Exit a parse tree produced by intel_operation_languageParser#definition.
+    def exitDefinition(self, ctx:intel_operation_languageParser.DefinitionContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#ternaryoperator.
+    def enterTernaryoperator(self, ctx:intel_operation_languageParser.TernaryoperatorContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#ternaryoperator.
+    def exitTernaryoperator(self, ctx:intel_operation_languageParser.TernaryoperatorContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#ifExpression.
+    def enterIfExpression(self, ctx:intel_operation_languageParser.IfExpressionContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#ifExpression.
+    def exitIfExpression(self, ctx:intel_operation_languageParser.IfExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#structAccess.
+    def enterStructAccess(self, ctx:intel_operation_languageParser.StructAccessContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#structAccess.
+    def exitStructAccess(self, ctx:intel_operation_languageParser.StructAccessContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#comparison.
+    def enterComparison(self, ctx:intel_operation_languageParser.ComparisonContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#comparison.
+    def exitComparison(self, ctx:intel_operation_languageParser.ComparisonContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#variable.
+    def enterVariable(self, ctx:intel_operation_languageParser.VariableContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#variable.
+    def exitVariable(self, ctx:intel_operation_languageParser.VariableContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#accessoperator.
+    def enterAccessoperator(self, ctx:intel_operation_languageParser.AccessoperatorContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#accessoperator.
+    def exitAccessoperator(self, ctx:intel_operation_languageParser.AccessoperatorContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#accessoperatorname.
+    def enterAccessoperatorname(self, ctx:intel_operation_languageParser.AccessoperatornameContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#accessoperatorname.
+    def exitAccessoperatorname(self, ctx:intel_operation_languageParser.AccessoperatornameContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#operator.
+    def enterOperator(self, ctx:intel_operation_languageParser.OperatorContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#operator.
+    def exitOperator(self, ctx:intel_operation_languageParser.OperatorContext):
         pass
 
 

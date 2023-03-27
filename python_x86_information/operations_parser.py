@@ -81,7 +81,7 @@ dst[MAX:256] := 0
 """
         ]
 
-#for t in test:
+#for t in test.in:
 #    print(str(t))
 
 import sys
@@ -146,6 +146,18 @@ def main(argv):
         return
 
     if run("tmp[32:0] := a[31:0] + b[31:0] + ( cin > 0 ? 1 : 0 )"):
+        return
+
+    if run("dst[255:0] := (a[255:0] XOR b[255:0])"):
+        return
+    
+    if run("""IF HW_NRND_GEN.ready == 1
+	val[63:0] := HW_NRND_GEN.data
+	dst := 1
+ELSE
+	val[63:0] := 0
+	dst := 0
+FI"""):
         return
 
 if __name__ == "__main__":

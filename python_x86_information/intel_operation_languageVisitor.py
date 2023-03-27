@@ -14,13 +14,53 @@ class intel_operation_languageVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by intel_operation_languageParser#base_block.
-    def visitBase_block(self, ctx:intel_operation_languageParser.Base_blockContext):
+    # Visit a parse tree produced by intel_operation_languageParser#expression.
+    def visitExpression(self, ctx:intel_operation_languageParser.ExpressionContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by intel_operation_languageParser#base_line.
-    def visitBase_line(self, ctx:intel_operation_languageParser.Base_lineContext):
+    # Visit a parse tree produced by intel_operation_languageParser#definition.
+    def visitDefinition(self, ctx:intel_operation_languageParser.DefinitionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by intel_operation_languageParser#ternaryoperator.
+    def visitTernaryoperator(self, ctx:intel_operation_languageParser.TernaryoperatorContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by intel_operation_languageParser#ifExpression.
+    def visitIfExpression(self, ctx:intel_operation_languageParser.IfExpressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by intel_operation_languageParser#structAccess.
+    def visitStructAccess(self, ctx:intel_operation_languageParser.StructAccessContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by intel_operation_languageParser#comparison.
+    def visitComparison(self, ctx:intel_operation_languageParser.ComparisonContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by intel_operation_languageParser#variable.
+    def visitVariable(self, ctx:intel_operation_languageParser.VariableContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by intel_operation_languageParser#accessoperator.
+    def visitAccessoperator(self, ctx:intel_operation_languageParser.AccessoperatorContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by intel_operation_languageParser#accessoperatorname.
+    def visitAccessoperatorname(self, ctx:intel_operation_languageParser.AccessoperatornameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by intel_operation_languageParser#operator.
+    def visitOperator(self, ctx:intel_operation_languageParser.OperatorContext):
         return self.visitChildren(ctx)
 
 

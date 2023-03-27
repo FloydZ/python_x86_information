@@ -983,10 +983,10 @@ def find_in_instruction_set(instruction_set: dict, instr: str,
 
     INPUT:
 
-    - ``test`` -- test
-    - ``test`` -- test
-    - ``test`` -- test
-    - ``test`` -- test
+    - ``test.in`` -- test.in
+    - ``test.in`` -- test.in
+    - ``test.in`` -- test.in
+    - ``test.in`` -- test.in
     
     EXAMPLES:
 
@@ -1067,7 +1067,7 @@ def get_uops_info(ARCH=""):
     TODO implement ARCH selector
 
     INPUT:
-    - ``test`` -- test
+    - ``test.in`` -- test.in
     EXAMPLES:
     """
     global CCTX
@@ -1080,7 +1080,7 @@ def get_instruction_set():
     from the package `opcodes`
 
     INPUT:
-    - ``test`` -- test
+    - ``test.in`` -- test.in
     EXAMPLES:
     """
     # taken from: opcodes
