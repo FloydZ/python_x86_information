@@ -150,7 +150,16 @@ def main(argv):
 
     if run("dst[255:0] := (a[255:0] XOR b[255:0])"):
         return
-    
+
+    if run("(a[1] == b) ? 1: 0"):
+        return
+
+    if run("(SignExtend32(word[a + 16:b + 0])"):
+        return
+
+    if run("SignExtend32(Cast_Int16(t.word[0]))"):
+        return
+
     if run("""IF HW_NRND_GEN.ready == 1
 	val[63:0] := HW_NRND_GEN.data
 	dst := 1

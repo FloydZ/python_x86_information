@@ -7,11 +7,13 @@ prog
 expression
 	: ifExpression
 	| forExpression
+	| doWhileExpression
+	| functionExpression
+	| ternaryoperator
 	| variable
 	| operator
 	| INT
 	| ( LeftParen expression+ RightParen )
-	| ternaryoperator
 	;
 
 definition
@@ -24,6 +26,8 @@ definition
 */
 ternaryoperator
 	: ( LeftParen comparison Question expression Colon expression RightParen )
+	| ( LeftParen comparison RightParen Question expression Colon expression )
+	| ( comparison Question expression Colon expression )
 	;
 
 /*
@@ -46,20 +50,30 @@ forExpression
     : FOR variable Assign ( variable | INT ) TO variable expression+ ENDFOR
     ;
 
+doWhileExpression
+    : DO WHILE LeftParen (expression)+ RightParen (expression)+ OD
+    ;
+/*
+
+*/
+functionExpression
+    : ( NAME INT?)  LeftParen ( expression )* RightParen
+    ;
+
 /*
     foo.bar
 */
 structAccess
-    : NAME Dot NAME
+    : NAME INT? Dot variable
     ;
 
 comparison
-	: (variable | INT) operator ( variable | INT )
+	: ( variable | INT ) operator ( variable | INT )
 	;
 
 
 variable
-	: NAME+ accessoperator?
+	: ( NAME+ accessoperator? )
 	| structAccess
 	;
 
@@ -71,14 +85,19 @@ variable
 	tmp[out+32: out+0]
 */
 accessoperator
-	: '[' accessoperatorname':' accessoperatorname ']'
-	| '[' accessoperatorname ']'
+	: '[' accessoperatorname+ ( ':' accessoperatorname+ )?']'
 	;
 
+accessoperatorname
+	: ( variable | INT )
+	| ( Plus | Star )
+	;
+/*
 accessoperatorname
 	: NAME Plus (NAME | INT)
 	| (NAME | INT)+
 	;
+*/
 
 operator
 	: Plus | Minus | Equal | Star | Less | Greater | Assign | EqualEqual | XOR | AND | AndAnd
@@ -122,6 +141,10 @@ ELSE : 'ELSE';
 FOR : 'FOR';
 TO : 'to';
 ENDFOR : 'ENDFOR';
+DO : 'DO';
+WHILE : 'WHILE';
+OD : 'OD';
+
 
 NAME
     :   IdentifierNondigit
