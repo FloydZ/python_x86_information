@@ -84,6 +84,7 @@ dst[MAX:256] := 0
 #for t in test.in:
 #    print(str(t))
 
+import os
 import sys
 from antlr4 import *
 from antlr4.tree import Trees
@@ -109,7 +110,10 @@ def run(input: str):
         False: on success
     """
     error_listener = MyErrorListener()
-    input_stream = InputStream(input)
+    if os.path.isfile(input):
+        input_stream = FileStream(input)
+    else:
+        input_stream = InputStream(input)
     lexer = Lexer(input_stream)
     lexer.removeErrorListeners()
     lexer.addErrorListener(error_listener)
@@ -154,10 +158,14 @@ def main(argv):
     if run("(a[1] == b) ? 1: 0"):
         return
 
-    if run("(SignExtend32(word[a + 16:b + 0])"):
+    if run("SignExtend32(word[a + 16:b + 0])"):
         return
 
     if run("SignExtend32(Cast_Int16(t.word[0]))"):
+        return
+
+    # TODO
+    if run("0x3F"):
         return
 
     if run("""IF HW_NRND_GEN.ready == 1

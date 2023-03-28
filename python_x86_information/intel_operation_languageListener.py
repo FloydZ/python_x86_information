@@ -53,6 +53,33 @@ class intel_operation_languageListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by intel_operation_languageParser#forExpression.
+    def enterForExpression(self, ctx:intel_operation_languageParser.ForExpressionContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#forExpression.
+    def exitForExpression(self, ctx:intel_operation_languageParser.ForExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#doWhileExpression.
+    def enterDoWhileExpression(self, ctx:intel_operation_languageParser.DoWhileExpressionContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#doWhileExpression.
+    def exitDoWhileExpression(self, ctx:intel_operation_languageParser.DoWhileExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#functionExpression.
+    def enterFunctionExpression(self, ctx:intel_operation_languageParser.FunctionExpressionContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#functionExpression.
+    def exitFunctionExpression(self, ctx:intel_operation_languageParser.FunctionExpressionContext):
+        pass
+
+
     # Enter a parse tree produced by intel_operation_languageParser#structAccess.
     def enterStructAccess(self, ctx:intel_operation_languageParser.StructAccessContext):
         pass

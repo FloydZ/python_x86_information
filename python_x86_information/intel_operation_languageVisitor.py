@@ -34,6 +34,21 @@ class intel_operation_languageVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by intel_operation_languageParser#forExpression.
+    def visitForExpression(self, ctx:intel_operation_languageParser.ForExpressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by intel_operation_languageParser#doWhileExpression.
+    def visitDoWhileExpression(self, ctx:intel_operation_languageParser.DoWhileExpressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by intel_operation_languageParser#functionExpression.
+    def visitFunctionExpression(self, ctx:intel_operation_languageParser.FunctionExpressionContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by intel_operation_languageParser#structAccess.
     def visitStructAccess(self, ctx:intel_operation_languageParser.StructAccessContext):
         return self.visitChildren(ctx)

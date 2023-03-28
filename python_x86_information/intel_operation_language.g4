@@ -47,7 +47,7 @@ FOR definition to UpperBouhd
 ENDFOR
 */
 forExpression
-    : FOR variable Assign ( variable | INT ) TO variable expression+ ENDFOR
+    : FOR variable Assign ( variable | INT ) TO ( variable | INT ) expression+ ENDFOR
     ;
 
 doWhileExpression
@@ -73,8 +73,7 @@ comparison
 
 
 variable
-	: ( NAME+ accessoperator? )
-	| structAccess
+	: NAME+ accessoperator? ( Dot variable )?
 	;
 
 
@@ -100,7 +99,7 @@ accessoperatorname
 */
 
 operator
-	: Plus | Minus | Equal | Star | Less | Greater | Assign | EqualEqual | XOR | AND | AndAnd
+	: Plus | Minus | Equal | Star | Less | Greater | Assign | EqualEqual | And | XOR | AND | AndAnd
 	;
 
 
@@ -195,6 +194,12 @@ INT
 	: [0-9]+
 	;
 
+LineComment
+    :   '//' ~[\r\n]*
+        -> skip
+    ;
+
 WS
-	: [ \n\t\r]+ -> channel(HIDDEN)
+	: [ \n\t\r]+
+	    -> channel(HIDDEN)
 	;
