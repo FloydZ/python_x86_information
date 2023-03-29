@@ -5,19 +5,20 @@ prog
 	;
 
 expression
-	: ifExpression
+	: INT
+	| ifExpression
 	| forExpression
 	| doWhileExpression
 	| functionExpression
 	| ternaryoperator
 	| variable
 	| operator
-	| INT
 	| ( LeftParen expression+ RightParen )
+	| definitionExpression
 	;
 
-definition
-    : operator | INT | variable
+definitionExpression
+    : variable Assign expression+
     ;
 
 /*
@@ -47,31 +48,48 @@ FOR definition to UpperBouhd
 ENDFOR
 */
 forExpression
-    : FOR variable Assign ( variable | INT ) TO ( variable | INT ) expression+ ENDFOR
+    : FOR definitionExpression ( TO | TO2 ) expression forExpressionExpression+ ENDFOR
     ;
 
-doWhileExpression
-    : DO WHILE LeftParen (expression)+ RightParen (expression)+ OD
+forExpressionExpression
+    : expression
     ;
+
 /*
+    DO WHILE (a := 1)
 
+    OD
+*/
+doWhileExpression
+    : DO WHILE LeftParen (expression)+ RightParen doWhileExpressionExpression+ OD
+    ;
+
+doWhileExpressionExpression
+    : expression
+    ;
+
+/*
+    BLA()
+    BLA(foo)
+    BLA(foo, bar)
 */
 functionExpression
-    : ( NAME INT?)  LeftParen ( expression )* RightParen
+    : ( NAME INT?)  LeftParen ( functionExpressionArgument )* RightParen
     ;
 
-/*
-    foo.bar
-*/
-structAccess
-    : NAME INT? Dot variable
+functionExpressionArgument
+    :  expression Comma?
     ;
+
 
 comparison
 	: ( variable | INT ) operator ( variable | INT )
 	;
 
 
+/*
+    foo.bar
+*/
 variable
 	: NAME+ accessoperator? ( Dot variable )?
 	;
@@ -99,7 +117,11 @@ accessoperatorname
 */
 
 operator
-	: Plus | Minus | Equal | Star | Less | Greater | Assign | EqualEqual | And | XOR | AND | AndAnd
+	: Plus | Minus | Equal | Star | Div | Mod
+	| Less | Greater | EqualEqual | (Less Equal) | (Greater Equal)
+	| And | Or | Not
+	| XOR | AND
+	| AndAnd | MinusMinus
 	;
 
 
@@ -139,6 +161,7 @@ FI : 'FI';
 ELSE : 'ELSE';
 FOR : 'FOR';
 TO : 'to';
+TO2 : 'TO';
 ENDFOR : 'ENDFOR';
 DO : 'DO';
 WHILE : 'WHILE';
@@ -181,9 +204,35 @@ HexQuad
     ;
 
 fragment
+BinaryConstant
+	:	'0' [bB] [0-1]+
+	;
+
+fragment
+OctalConstant
+    :   '0' OctalDigit*
+    ;
+
+fragment
+HexadecimalConstant
+    :   HexadecimalPrefix HexadecimalDigit+
+    ;
+
+fragment
+HexadecimalPrefix
+    :   '0' [xX]
+    ;
+
+fragment
+OctalDigit
+    :   [0-7]
+    ;
+
+fragment
 HexadecimalDigit
     :   [0-9a-fA-F]
     ;
+
 /*
 NAME
 	: [a-zA-Z]+
@@ -191,7 +240,9 @@ NAME
 */
 
 INT
-	: [0-9]+
+	: ([0-9]+
+	| HexadecimalConstant
+	)
 	;
 
 LineComment

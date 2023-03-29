@@ -164,7 +164,6 @@ def main(argv):
     if run("SignExtend32(Cast_Int16(t.word[0]))"):
         return
 
-    # TODO
     if run("0x3F"):
         return
 
@@ -175,6 +174,22 @@ ELSE
 	val[63:0] := 0
 	dst := 0
 FI"""):
+
+        if run("test/t01.in"):
+            return
+
+        if run("test/t02.in"):
+            return
+
+        if run("test/t03.in"):
+            return
+
+        if run("test/t04.in"):
+            return
+
+        if run("test/t05.in"):
+            return
+
         return
 
 if __name__ == "__main__":

@@ -62,6 +62,15 @@ class intel_operation_languageListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by intel_operation_languageParser#forExpressionExpression.
+    def enterForExpressionExpression(self, ctx:intel_operation_languageParser.ForExpressionExpressionContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#forExpressionExpression.
+    def exitForExpressionExpression(self, ctx:intel_operation_languageParser.ForExpressionExpressionContext):
+        pass
+
+
     # Enter a parse tree produced by intel_operation_languageParser#doWhileExpression.
     def enterDoWhileExpression(self, ctx:intel_operation_languageParser.DoWhileExpressionContext):
         pass
@@ -71,12 +80,30 @@ class intel_operation_languageListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by intel_operation_languageParser#doWhileExpressionExpression.
+    def enterDoWhileExpressionExpression(self, ctx:intel_operation_languageParser.DoWhileExpressionExpressionContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#doWhileExpressionExpression.
+    def exitDoWhileExpressionExpression(self, ctx:intel_operation_languageParser.DoWhileExpressionExpressionContext):
+        pass
+
+
     # Enter a parse tree produced by intel_operation_languageParser#functionExpression.
     def enterFunctionExpression(self, ctx:intel_operation_languageParser.FunctionExpressionContext):
         pass
 
     # Exit a parse tree produced by intel_operation_languageParser#functionExpression.
     def exitFunctionExpression(self, ctx:intel_operation_languageParser.FunctionExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#functionExpressionArgument.
+    def enterFunctionExpressionArgument(self, ctx:intel_operation_languageParser.FunctionExpressionArgumentContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#functionExpressionArgument.
+    def exitFunctionExpressionArgument(self, ctx:intel_operation_languageParser.FunctionExpressionArgumentContext):
         pass
 
 

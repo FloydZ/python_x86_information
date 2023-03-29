@@ -11,88 +11,95 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\60")
-        buf.write("\u00c8\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\61")
+        buf.write("\u00d7\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
-        buf.write("\t\16\4\17\t\17\3\2\7\2 \n\2\f\2\16\2#\13\2\3\2\3\2\3")
-        buf.write("\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\6\3\61\n\3\r\3")
-        buf.write("\16\3\62\3\3\3\3\5\3\67\n\3\3\4\3\4\3\4\5\4<\n\4\3\5\3")
+        buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\3\2\7\2")
+        buf.write("&\n\2\f\2\16\2)\13\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3")
+        buf.write("\3\3\3\3\3\3\3\6\3\67\n\3\r\3\16\38\3\3\3\3\5\3=\n\3\3")
+        buf.write("\4\3\4\3\4\5\4B\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3")
         buf.write("\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5")
-        buf.write("\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5T\n\5\3\6\3\6\3\6\6\6")
-        buf.write("Y\n\6\r\6\16\6Z\3\6\3\6\6\6_\n\6\r\6\16\6`\5\6c\n\6\3")
-        buf.write("\6\3\6\3\7\3\7\3\7\3\7\3\7\5\7l\n\7\3\7\3\7\3\7\6\7q\n")
-        buf.write("\7\r\7\16\7r\3\7\3\7\3\b\3\b\3\b\3\b\6\b{\n\b\r\b\16\b")
-        buf.write("|\3\b\3\b\6\b\u0081\n\b\r\b\16\b\u0082\3\b\3\b\3\t\3\t")
-        buf.write("\5\t\u0089\n\t\3\t\3\t\7\t\u008d\n\t\f\t\16\t\u0090\13")
-        buf.write("\t\3\t\3\t\3\n\3\n\5\n\u0096\n\n\3\n\3\n\3\n\3\13\3\13")
-        buf.write("\5\13\u009d\n\13\3\13\3\13\3\13\5\13\u00a2\n\13\3\f\6")
-        buf.write("\f\u00a5\n\f\r\f\16\f\u00a6\3\f\5\f\u00aa\n\f\3\f\5\f")
-        buf.write("\u00ad\n\f\3\r\3\r\6\r\u00b1\n\r\r\r\16\r\u00b2\3\r\3")
-        buf.write("\r\6\r\u00b7\n\r\r\r\16\r\u00b8\5\r\u00bb\n\r\3\r\3\r")
-        buf.write("\3\16\3\16\5\16\u00c1\n\16\3\16\5\16\u00c4\n\16\3\17\3")
-        buf.write("\17\3\17\2\2\20\2\4\6\b\n\f\16\20\22\24\26\30\32\34\2")
-        buf.write("\4\4\2\16\16\22\22\t\2\13\16\20\20\22\22\27\27\32\33\36")
-        buf.write("\36  \2\u00db\2!\3\2\2\2\4\66\3\2\2\2\6;\3\2\2\2\bS\3")
-        buf.write("\2\2\2\nU\3\2\2\2\ff\3\2\2\2\16v\3\2\2\2\20\u0086\3\2")
-        buf.write("\2\2\22\u0093\3\2\2\2\24\u009c\3\2\2\2\26\u00ac\3\2\2")
-        buf.write("\2\30\u00ae\3\2\2\2\32\u00c3\3\2\2\2\34\u00c5\3\2\2\2")
-        buf.write("\36 \5\4\3\2\37\36\3\2\2\2 #\3\2\2\2!\37\3\2\2\2!\"\3")
-        buf.write("\2\2\2\"$\3\2\2\2#!\3\2\2\2$%\7\2\2\3%\3\3\2\2\2&\67\5")
-        buf.write("\n\6\2\'\67\5\f\7\2(\67\5\16\b\2)\67\5\20\t\2*\67\5\b")
-        buf.write("\5\2+\67\5\26\f\2,\67\5\34\17\2-\67\7.\2\2.\60\7\5\2\2")
-        buf.write("/\61\5\4\3\2\60/\3\2\2\2\61\62\3\2\2\2\62\60\3\2\2\2\62")
-        buf.write("\63\3\2\2\2\63\64\3\2\2\2\64\65\7\6\2\2\65\67\3\2\2\2")
-        buf.write("\66&\3\2\2\2\66\'\3\2\2\2\66(\3\2\2\2\66)\3\2\2\2\66*")
-        buf.write("\3\2\2\2\66+\3\2\2\2\66,\3\2\2\2\66-\3\2\2\2\66.\3\2\2")
-        buf.write("\2\67\5\3\2\2\28<\5\34\17\29<\7.\2\2:<\5\26\f\2;8\3\2")
-        buf.write("\2\2;9\3\2\2\2;:\3\2\2\2<\7\3\2\2\2=>\7\5\2\2>?\5\24\13")
-        buf.write("\2?@\7\7\2\2@A\5\4\3\2AB\7\b\2\2BC\5\4\3\2CD\7\6\2\2D")
-        buf.write("T\3\2\2\2EF\7\5\2\2FG\5\24\13\2GH\7\6\2\2HI\7\7\2\2IJ")
-        buf.write("\5\4\3\2JK\7\b\2\2KL\5\4\3\2LT\3\2\2\2MN\5\24\13\2NO\7")
-        buf.write("\7\2\2OP\5\4\3\2PQ\7\b\2\2QR\5\4\3\2RT\3\2\2\2S=\3\2\2")
-        buf.write("\2SE\3\2\2\2SM\3\2\2\2T\t\3\2\2\2UV\7$\2\2VX\5\24\13\2")
-        buf.write("WY\5\4\3\2XW\3\2\2\2YZ\3\2\2\2ZX\3\2\2\2Z[\3\2\2\2[b\3")
-        buf.write("\2\2\2\\^\7&\2\2]_\5\4\3\2^]\3\2\2\2_`\3\2\2\2`^\3\2\2")
-        buf.write("\2`a\3\2\2\2ac\3\2\2\2b\\\3\2\2\2bc\3\2\2\2cd\3\2\2\2")
-        buf.write("de\7%\2\2e\13\3\2\2\2fg\7\'\2\2gh\5\26\f\2hk\7\13\2\2")
-        buf.write("il\5\26\f\2jl\7.\2\2ki\3\2\2\2kj\3\2\2\2lm\3\2\2\2mn\7")
-        buf.write("(\2\2np\5\26\f\2oq\5\4\3\2po\3\2\2\2qr\3\2\2\2rp\3\2\2")
-        buf.write("\2rs\3\2\2\2st\3\2\2\2tu\7)\2\2u\r\3\2\2\2vw\7*\2\2wx")
-        buf.write("\7+\2\2xz\7\5\2\2y{\5\4\3\2zy\3\2\2\2{|\3\2\2\2|z\3\2")
-        buf.write("\2\2|}\3\2\2\2}~\3\2\2\2~\u0080\7\6\2\2\177\u0081\5\4")
-        buf.write("\3\2\u0080\177\3\2\2\2\u0081\u0082\3\2\2\2\u0082\u0080")
-        buf.write("\3\2\2\2\u0082\u0083\3\2\2\2\u0083\u0084\3\2\2\2\u0084")
-        buf.write("\u0085\7,\2\2\u0085\17\3\2\2\2\u0086\u0088\7-\2\2\u0087")
-        buf.write("\u0089\7.\2\2\u0088\u0087\3\2\2\2\u0088\u0089\3\2\2\2")
-        buf.write("\u0089\u008a\3\2\2\2\u008a\u008e\7\5\2\2\u008b\u008d\5")
-        buf.write("\4\3\2\u008c\u008b\3\2\2\2\u008d\u0090\3\2\2\2\u008e\u008c")
-        buf.write("\3\2\2\2\u008e\u008f\3\2\2\2\u008f\u0091\3\2\2\2\u0090")
-        buf.write("\u008e\3\2\2\2\u0091\u0092\7\6\2\2\u0092\21\3\2\2\2\u0093")
-        buf.write("\u0095\7-\2\2\u0094\u0096\7.\2\2\u0095\u0094\3\2\2\2\u0095")
-        buf.write("\u0096\3\2\2\2\u0096\u0097\3\2\2\2\u0097\u0098\7\n\2\2")
-        buf.write("\u0098\u0099\5\26\f\2\u0099\23\3\2\2\2\u009a\u009d\5\26")
-        buf.write("\f\2\u009b\u009d\7.\2\2\u009c\u009a\3\2\2\2\u009c\u009b")
-        buf.write("\3\2\2\2\u009d\u009e\3\2\2\2\u009e\u00a1\5\34\17\2\u009f")
-        buf.write("\u00a2\5\26\f\2\u00a0\u00a2\7.\2\2\u00a1\u009f\3\2\2\2")
-        buf.write("\u00a1\u00a0\3\2\2\2\u00a2\25\3\2\2\2\u00a3\u00a5\7-\2")
-        buf.write("\2\u00a4\u00a3\3\2\2\2\u00a5\u00a6\3\2\2\2\u00a6\u00a4")
-        buf.write("\3\2\2\2\u00a6\u00a7\3\2\2\2\u00a7\u00a9\3\2\2\2\u00a8")
-        buf.write("\u00aa\5\30\r\2\u00a9\u00a8\3\2\2\2\u00a9\u00aa\3\2\2")
-        buf.write("\2\u00aa\u00ad\3\2\2\2\u00ab\u00ad\5\22\n\2\u00ac\u00a4")
-        buf.write("\3\2\2\2\u00ac\u00ab\3\2\2\2\u00ad\27\3\2\2\2\u00ae\u00b0")
-        buf.write("\7\3\2\2\u00af\u00b1\5\32\16\2\u00b0\u00af\3\2\2\2\u00b1")
-        buf.write("\u00b2\3\2\2\2\u00b2\u00b0\3\2\2\2\u00b2\u00b3\3\2\2\2")
-        buf.write("\u00b3\u00ba\3\2\2\2\u00b4\u00b6\7\b\2\2\u00b5\u00b7\5")
-        buf.write("\32\16\2\u00b6\u00b5\3\2\2\2\u00b7\u00b8\3\2\2\2\u00b8")
-        buf.write("\u00b6\3\2\2\2\u00b8\u00b9\3\2\2\2\u00b9\u00bb\3\2\2\2")
-        buf.write("\u00ba\u00b4\3\2\2\2\u00ba\u00bb\3\2\2\2\u00bb\u00bc\3")
-        buf.write("\2\2\2\u00bc\u00bd\7\4\2\2\u00bd\31\3\2\2\2\u00be\u00c1")
-        buf.write("\5\26\f\2\u00bf\u00c1\7.\2\2\u00c0\u00be\3\2\2\2\u00c0")
-        buf.write("\u00bf\3\2\2\2\u00c1\u00c4\3\2\2\2\u00c2\u00c4\t\2\2\2")
-        buf.write("\u00c3\u00c0\3\2\2\2\u00c3\u00c2\3\2\2\2\u00c4\33\3\2")
-        buf.write("\2\2\u00c5\u00c6\t\3\2\2\u00c6\35\3\2\2\2\33!\62\66;S")
-        buf.write("Z`bkr|\u0082\u0088\u008e\u0095\u009c\u00a1\u00a6\u00a9")
-        buf.write("\u00ac\u00b2\u00b8\u00ba\u00c0\u00c3")
+        buf.write("\5\5Z\n\5\3\6\3\6\3\6\6\6_\n\6\r\6\16\6`\3\6\3\6\6\6e")
+        buf.write("\n\6\r\6\16\6f\5\6i\n\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\5")
+        buf.write("\7r\n\7\3\7\3\7\3\7\6\7w\n\7\r\7\16\7x\3\7\3\7\3\b\3\b")
+        buf.write("\3\t\3\t\3\t\3\t\6\t\u0083\n\t\r\t\16\t\u0084\3\t\3\t")
+        buf.write("\6\t\u0089\n\t\r\t\16\t\u008a\3\t\3\t\3\n\3\n\3\13\3\13")
+        buf.write("\5\13\u0093\n\13\3\13\3\13\7\13\u0097\n\13\f\13\16\13")
+        buf.write("\u009a\13\13\3\13\3\13\3\f\3\f\5\f\u00a0\n\f\3\r\3\r\5")
+        buf.write("\r\u00a4\n\r\3\r\3\r\3\r\3\16\3\16\5\16\u00ab\n\16\3\16")
+        buf.write("\3\16\3\16\5\16\u00b0\n\16\3\17\6\17\u00b3\n\17\r\17\16")
+        buf.write("\17\u00b4\3\17\5\17\u00b8\n\17\3\17\3\17\5\17\u00bc\n")
+        buf.write("\17\3\20\3\20\6\20\u00c0\n\20\r\20\16\20\u00c1\3\20\3")
+        buf.write("\20\6\20\u00c6\n\20\r\20\16\20\u00c7\5\20\u00ca\n\20\3")
+        buf.write("\20\3\20\3\21\3\21\5\21\u00d0\n\21\3\21\5\21\u00d3\n\21")
+        buf.write("\3\22\3\22\3\22\2\2\23\2\4\6\b\n\f\16\20\22\24\26\30\32")
+        buf.write("\34\36 \"\2\5\3\2()\4\2\16\16\22\22\b\2\13\16\20\20\22")
+        buf.write("\27\32\34\36\36  \2\u00e8\2\'\3\2\2\2\4<\3\2\2\2\6A\3")
+        buf.write("\2\2\2\bY\3\2\2\2\n[\3\2\2\2\fl\3\2\2\2\16|\3\2\2\2\20")
+        buf.write("~\3\2\2\2\22\u008e\3\2\2\2\24\u0090\3\2\2\2\26\u009d\3")
+        buf.write("\2\2\2\30\u00a1\3\2\2\2\32\u00aa\3\2\2\2\34\u00b2\3\2")
+        buf.write("\2\2\36\u00bd\3\2\2\2 \u00d2\3\2\2\2\"\u00d4\3\2\2\2$")
+        buf.write("&\5\4\3\2%$\3\2\2\2&)\3\2\2\2\'%\3\2\2\2\'(\3\2\2\2(*")
+        buf.write("\3\2\2\2)\'\3\2\2\2*+\7\2\2\3+\3\3\2\2\2,=\7/\2\2-=\5")
+        buf.write("\n\6\2.=\5\f\7\2/=\5\20\t\2\60=\5\24\13\2\61=\5\b\5\2")
+        buf.write("\62=\5\34\17\2\63=\5\"\22\2\64\66\7\5\2\2\65\67\5\4\3")
+        buf.write("\2\66\65\3\2\2\2\678\3\2\2\28\66\3\2\2\289\3\2\2\29:\3")
+        buf.write("\2\2\2:;\7\6\2\2;=\3\2\2\2<,\3\2\2\2<-\3\2\2\2<.\3\2\2")
+        buf.write("\2</\3\2\2\2<\60\3\2\2\2<\61\3\2\2\2<\62\3\2\2\2<\63\3")
+        buf.write("\2\2\2<\64\3\2\2\2=\5\3\2\2\2>B\5\"\22\2?B\7/\2\2@B\5")
+        buf.write("\34\17\2A>\3\2\2\2A?\3\2\2\2A@\3\2\2\2B\7\3\2\2\2CD\7")
+        buf.write("\5\2\2DE\5\32\16\2EF\7\7\2\2FG\5\4\3\2GH\7\b\2\2HI\5\4")
+        buf.write("\3\2IJ\7\6\2\2JZ\3\2\2\2KL\7\5\2\2LM\5\32\16\2MN\7\6\2")
+        buf.write("\2NO\7\7\2\2OP\5\4\3\2PQ\7\b\2\2QR\5\4\3\2RZ\3\2\2\2S")
+        buf.write("T\5\32\16\2TU\7\7\2\2UV\5\4\3\2VW\7\b\2\2WX\5\4\3\2XZ")
+        buf.write("\3\2\2\2YC\3\2\2\2YK\3\2\2\2YS\3\2\2\2Z\t\3\2\2\2[\\\7")
+        buf.write("$\2\2\\^\5\32\16\2]_\5\4\3\2^]\3\2\2\2_`\3\2\2\2`^\3\2")
+        buf.write("\2\2`a\3\2\2\2ah\3\2\2\2bd\7&\2\2ce\5\4\3\2dc\3\2\2\2")
+        buf.write("ef\3\2\2\2fd\3\2\2\2fg\3\2\2\2gi\3\2\2\2hb\3\2\2\2hi\3")
+        buf.write("\2\2\2ij\3\2\2\2jk\7%\2\2k\13\3\2\2\2lm\7\'\2\2mn\5\34")
+        buf.write("\17\2nq\7\13\2\2or\5\34\17\2pr\7/\2\2qo\3\2\2\2qp\3\2")
+        buf.write("\2\2rs\3\2\2\2st\t\2\2\2tv\5\4\3\2uw\5\16\b\2vu\3\2\2")
+        buf.write("\2wx\3\2\2\2xv\3\2\2\2xy\3\2\2\2yz\3\2\2\2z{\7*\2\2{\r")
+        buf.write("\3\2\2\2|}\5\4\3\2}\17\3\2\2\2~\177\7+\2\2\177\u0080\7")
+        buf.write(",\2\2\u0080\u0082\7\5\2\2\u0081\u0083\5\4\3\2\u0082\u0081")
+        buf.write("\3\2\2\2\u0083\u0084\3\2\2\2\u0084\u0082\3\2\2\2\u0084")
+        buf.write("\u0085\3\2\2\2\u0085\u0086\3\2\2\2\u0086\u0088\7\6\2\2")
+        buf.write("\u0087\u0089\5\22\n\2\u0088\u0087\3\2\2\2\u0089\u008a")
+        buf.write("\3\2\2\2\u008a\u0088\3\2\2\2\u008a\u008b\3\2\2\2\u008b")
+        buf.write("\u008c\3\2\2\2\u008c\u008d\7-\2\2\u008d\21\3\2\2\2\u008e")
+        buf.write("\u008f\5\4\3\2\u008f\23\3\2\2\2\u0090\u0092\7.\2\2\u0091")
+        buf.write("\u0093\7/\2\2\u0092\u0091\3\2\2\2\u0092\u0093\3\2\2\2")
+        buf.write("\u0093\u0094\3\2\2\2\u0094\u0098\7\5\2\2\u0095\u0097\5")
+        buf.write("\26\f\2\u0096\u0095\3\2\2\2\u0097\u009a\3\2\2\2\u0098")
+        buf.write("\u0096\3\2\2\2\u0098\u0099\3\2\2\2\u0099\u009b\3\2\2\2")
+        buf.write("\u009a\u0098\3\2\2\2\u009b\u009c\7\6\2\2\u009c\25\3\2")
+        buf.write("\2\2\u009d\u009f\5\4\3\2\u009e\u00a0\7\t\2\2\u009f\u009e")
+        buf.write("\3\2\2\2\u009f\u00a0\3\2\2\2\u00a0\27\3\2\2\2\u00a1\u00a3")
+        buf.write("\7.\2\2\u00a2\u00a4\7/\2\2\u00a3\u00a2\3\2\2\2\u00a3\u00a4")
+        buf.write("\3\2\2\2\u00a4\u00a5\3\2\2\2\u00a5\u00a6\7\n\2\2\u00a6")
+        buf.write("\u00a7\5\34\17\2\u00a7\31\3\2\2\2\u00a8\u00ab\5\34\17")
+        buf.write("\2\u00a9\u00ab\7/\2\2\u00aa\u00a8\3\2\2\2\u00aa\u00a9")
+        buf.write("\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac\u00af\5\"\22\2\u00ad")
+        buf.write("\u00b0\5\34\17\2\u00ae\u00b0\7/\2\2\u00af\u00ad\3\2\2")
+        buf.write("\2\u00af\u00ae\3\2\2\2\u00b0\33\3\2\2\2\u00b1\u00b3\7")
+        buf.write(".\2\2\u00b2\u00b1\3\2\2\2\u00b3\u00b4\3\2\2\2\u00b4\u00b2")
+        buf.write("\3\2\2\2\u00b4\u00b5\3\2\2\2\u00b5\u00b7\3\2\2\2\u00b6")
+        buf.write("\u00b8\5\36\20\2\u00b7\u00b6\3\2\2\2\u00b7\u00b8\3\2\2")
+        buf.write("\2\u00b8\u00bb\3\2\2\2\u00b9\u00ba\7\n\2\2\u00ba\u00bc")
+        buf.write("\5\34\17\2\u00bb\u00b9\3\2\2\2\u00bb\u00bc\3\2\2\2\u00bc")
+        buf.write("\35\3\2\2\2\u00bd\u00bf\7\3\2\2\u00be\u00c0\5 \21\2\u00bf")
+        buf.write("\u00be\3\2\2\2\u00c0\u00c1\3\2\2\2\u00c1\u00bf\3\2\2\2")
+        buf.write("\u00c1\u00c2\3\2\2\2\u00c2\u00c9\3\2\2\2\u00c3\u00c5\7")
+        buf.write("\b\2\2\u00c4\u00c6\5 \21\2\u00c5\u00c4\3\2\2\2\u00c6\u00c7")
+        buf.write("\3\2\2\2\u00c7\u00c5\3\2\2\2\u00c7\u00c8\3\2\2\2\u00c8")
+        buf.write("\u00ca\3\2\2\2\u00c9\u00c3\3\2\2\2\u00c9\u00ca\3\2\2\2")
+        buf.write("\u00ca\u00cb\3\2\2\2\u00cb\u00cc\7\4\2\2\u00cc\37\3\2")
+        buf.write("\2\2\u00cd\u00d0\5\34\17\2\u00ce\u00d0\7/\2\2\u00cf\u00cd")
+        buf.write("\3\2\2\2\u00cf\u00ce\3\2\2\2\u00d0\u00d3\3\2\2\2\u00d1")
+        buf.write("\u00d3\t\3\2\2\u00d2\u00cf\3\2\2\2\u00d2\u00d1\3\2\2\2")
+        buf.write("\u00d3!\3\2\2\2\u00d4\u00d5\t\4\2\2\u00d5#\3\2\2\2\34")
+        buf.write("\'8<AY`fhqx\u0084\u008a\u0092\u0098\u009f\u00a3\u00aa")
+        buf.write("\u00af\u00b4\u00b7\u00bb\u00c1\u00c7\u00c9\u00cf\u00d2")
         return buf.getvalue()
 
 
@@ -111,8 +118,8 @@ class intel_operation_languageParser ( Parser ):
                      "'-'", "'--'", "'*'", "'/'", "'%'", "'&'", "'|'", "'&&'", 
                      "'||'", "'^'", "'XOR'", "'AND'", "'!'", "'~'", "'<'", 
                      "'<='", "'>'", "'>='", "'<<'", "'>>'", "'IF'", "'FI'", 
-                     "'ELSE'", "'FOR'", "'to'", "'ENDFOR'", "'DO'", "'WHILE'", 
-                     "'OD'" ]
+                     "'ELSE'", "'FOR'", "'to'", "'TO'", "'ENDFOR'", "'DO'", 
+                     "'WHILE'", "'OD'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "LeftParen", 
                       "RightParen", "Question", "Colon", "Comma", "Dot", 
@@ -121,8 +128,8 @@ class intel_operation_languageParser ( Parser ):
                       "Or", "AndAnd", "OrOr", "Caret", "XOR", "AND", "Not", 
                       "Tilde", "Less", "LessEqual", "Greater", "GreaterEqual", 
                       "LeftShift", "RightShift", "IF", "FI", "ELSE", "FOR", 
-                      "TO", "ENDFOR", "DO", "WHILE", "OD", "NAME", "INT", 
-                      "LineComment", "WS" ]
+                      "TO", "TO2", "ENDFOR", "DO", "WHILE", "OD", "NAME", 
+                      "INT", "LineComment", "WS" ]
 
     RULE_prog = 0
     RULE_expression = 1
@@ -130,19 +137,23 @@ class intel_operation_languageParser ( Parser ):
     RULE_ternaryoperator = 3
     RULE_ifExpression = 4
     RULE_forExpression = 5
-    RULE_doWhileExpression = 6
-    RULE_functionExpression = 7
-    RULE_structAccess = 8
-    RULE_comparison = 9
-    RULE_variable = 10
-    RULE_accessoperator = 11
-    RULE_accessoperatorname = 12
-    RULE_operator = 13
+    RULE_forExpressionExpression = 6
+    RULE_doWhileExpression = 7
+    RULE_doWhileExpressionExpression = 8
+    RULE_functionExpression = 9
+    RULE_functionExpressionArgument = 10
+    RULE_structAccess = 11
+    RULE_comparison = 12
+    RULE_variable = 13
+    RULE_accessoperator = 14
+    RULE_accessoperatorname = 15
+    RULE_operator = 16
 
     ruleNames =  [ "prog", "expression", "definition", "ternaryoperator", 
-                   "ifExpression", "forExpression", "doWhileExpression", 
-                   "functionExpression", "structAccess", "comparison", "variable", 
-                   "accessoperator", "accessoperatorname", "operator" ]
+                   "ifExpression", "forExpression", "forExpressionExpression", 
+                   "doWhileExpression", "doWhileExpressionExpression", "functionExpression", 
+                   "functionExpressionArgument", "structAccess", "comparison", 
+                   "variable", "accessoperator", "accessoperatorname", "operator" ]
 
     EOF = Token.EOF
     T__0=1
@@ -183,14 +194,15 @@ class intel_operation_languageParser ( Parser ):
     ELSE=36
     FOR=37
     TO=38
-    ENDFOR=39
-    DO=40
-    WHILE=41
-    OD=42
-    NAME=43
-    INT=44
-    LineComment=45
-    WS=46
+    TO2=39
+    ENDFOR=40
+    DO=41
+    WHILE=42
+    OD=43
+    NAME=44
+    INT=45
+    LineComment=46
+    WS=47
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -244,17 +256,17 @@ class intel_operation_languageParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 31
+            self.state = 37
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0):
-                self.state = 28
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.Div) | (1 << intel_operation_languageParser.Mod) | (1 << intel_operation_languageParser.And) | (1 << intel_operation_languageParser.Or) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Not) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0):
+                self.state = 34
                 self.expression()
-                self.state = 33
+                self.state = 39
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 34
+            self.state = 40
             self.match(intel_operation_languageParser.EOF)
         except RecognitionException as re:
             localctx.exception = re
@@ -270,6 +282,9 @@ class intel_operation_languageParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
+
+        def INT(self):
+            return self.getToken(intel_operation_languageParser.INT, 0)
 
         def ifExpression(self):
             return self.getTypedRuleContext(intel_operation_languageParser.IfExpressionContext,0)
@@ -298,9 +313,6 @@ class intel_operation_languageParser ( Parser ):
         def operator(self):
             return self.getTypedRuleContext(intel_operation_languageParser.OperatorContext,0)
 
-
-        def INT(self):
-            return self.getToken(intel_operation_languageParser.INT, 0)
 
         def LeftParen(self):
             return self.getToken(intel_operation_languageParser.LeftParen, 0)
@@ -341,74 +353,74 @@ class intel_operation_languageParser ( Parser ):
         self.enterRule(localctx, 2, self.RULE_expression)
         self._la = 0 # Token type
         try:
-            self.state = 52
+            self.state = 58
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,2,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 36
-                self.ifExpression()
+                self.state = 42
+                self.match(intel_operation_languageParser.INT)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 37
-                self.forExpression()
+                self.state = 43
+                self.ifExpression()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 38
-                self.doWhileExpression()
+                self.state = 44
+                self.forExpression()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 39
-                self.functionExpression()
+                self.state = 45
+                self.doWhileExpression()
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 40
-                self.ternaryoperator()
+                self.state = 46
+                self.functionExpression()
                 pass
 
             elif la_ == 6:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 41
-                self.variable()
+                self.state = 47
+                self.ternaryoperator()
                 pass
 
             elif la_ == 7:
                 self.enterOuterAlt(localctx, 7)
-                self.state = 42
-                self.operator()
+                self.state = 48
+                self.variable()
                 pass
 
             elif la_ == 8:
                 self.enterOuterAlt(localctx, 8)
-                self.state = 43
-                self.match(intel_operation_languageParser.INT)
+                self.state = 49
+                self.operator()
                 pass
 
             elif la_ == 9:
                 self.enterOuterAlt(localctx, 9)
-                self.state = 44
+                self.state = 50
                 self.match(intel_operation_languageParser.LeftParen)
-                self.state = 46 
+                self.state = 52 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while True:
-                    self.state = 45
+                    self.state = 51
                     self.expression()
-                    self.state = 48 
+                    self.state = 54 
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
-                    if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
+                    if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.Div) | (1 << intel_operation_languageParser.Mod) | (1 << intel_operation_languageParser.And) | (1 << intel_operation_languageParser.Or) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Not) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
                         break
 
-                self.state = 50
+                self.state = 56
                 self.match(intel_operation_languageParser.RightParen)
                 pass
 
@@ -464,22 +476,22 @@ class intel_operation_languageParser ( Parser ):
         localctx = intel_operation_languageParser.DefinitionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 4, self.RULE_definition)
         try:
-            self.state = 57
+            self.state = 63
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [intel_operation_languageParser.Assign, intel_operation_languageParser.Equal, intel_operation_languageParser.EqualEqual, intel_operation_languageParser.Plus, intel_operation_languageParser.Minus, intel_operation_languageParser.Star, intel_operation_languageParser.AndAnd, intel_operation_languageParser.XOR, intel_operation_languageParser.AND, intel_operation_languageParser.Less, intel_operation_languageParser.Greater]:
+            if token in [intel_operation_languageParser.Assign, intel_operation_languageParser.Equal, intel_operation_languageParser.EqualEqual, intel_operation_languageParser.Plus, intel_operation_languageParser.Minus, intel_operation_languageParser.Star, intel_operation_languageParser.Div, intel_operation_languageParser.Mod, intel_operation_languageParser.And, intel_operation_languageParser.Or, intel_operation_languageParser.AndAnd, intel_operation_languageParser.XOR, intel_operation_languageParser.AND, intel_operation_languageParser.Not, intel_operation_languageParser.Less, intel_operation_languageParser.Greater]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 54
+                self.state = 60
                 self.operator()
                 pass
             elif token in [intel_operation_languageParser.INT]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 55
+                self.state = 61
                 self.match(intel_operation_languageParser.INT)
                 pass
             elif token in [intel_operation_languageParser.NAME]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 56
+                self.state = 62
                 self.variable()
                 pass
             else:
@@ -548,49 +560,35 @@ class intel_operation_languageParser ( Parser ):
         localctx = intel_operation_languageParser.TernaryoperatorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 6, self.RULE_ternaryoperator)
         try:
-            self.state = 81
+            self.state = 87
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,4,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 59
-                self.match(intel_operation_languageParser.LeftParen)
-                self.state = 60
-                self.comparison()
-                self.state = 61
-                self.match(intel_operation_languageParser.Question)
-                self.state = 62
-                self.expression()
-                self.state = 63
-                self.match(intel_operation_languageParser.Colon)
-                self.state = 64
-                self.expression()
                 self.state = 65
+                self.match(intel_operation_languageParser.LeftParen)
+                self.state = 66
+                self.comparison()
+                self.state = 67
+                self.match(intel_operation_languageParser.Question)
+                self.state = 68
+                self.expression()
+                self.state = 69
+                self.match(intel_operation_languageParser.Colon)
+                self.state = 70
+                self.expression()
+                self.state = 71
                 self.match(intel_operation_languageParser.RightParen)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 67
-                self.match(intel_operation_languageParser.LeftParen)
-                self.state = 68
-                self.comparison()
-                self.state = 69
-                self.match(intel_operation_languageParser.RightParen)
-                self.state = 70
-                self.match(intel_operation_languageParser.Question)
-                self.state = 71
-                self.expression()
-                self.state = 72
-                self.match(intel_operation_languageParser.Colon)
                 self.state = 73
-                self.expression()
-                pass
-
-            elif la_ == 3:
-                self.enterOuterAlt(localctx, 3)
-                self.state = 75
+                self.match(intel_operation_languageParser.LeftParen)
+                self.state = 74
                 self.comparison()
+                self.state = 75
+                self.match(intel_operation_languageParser.RightParen)
                 self.state = 76
                 self.match(intel_operation_languageParser.Question)
                 self.state = 77
@@ -598,6 +596,20 @@ class intel_operation_languageParser ( Parser ):
                 self.state = 78
                 self.match(intel_operation_languageParser.Colon)
                 self.state = 79
+                self.expression()
+                pass
+
+            elif la_ == 3:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 81
+                self.comparison()
+                self.state = 82
+                self.match(intel_operation_languageParser.Question)
+                self.state = 83
+                self.expression()
+                self.state = 84
+                self.match(intel_operation_languageParser.Colon)
+                self.state = 85
                 self.expression()
                 pass
 
@@ -664,43 +676,43 @@ class intel_operation_languageParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 83
+            self.state = 89
             self.match(intel_operation_languageParser.IF)
-            self.state = 84
+            self.state = 90
             self.comparison()
-            self.state = 86 
+            self.state = 92 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 85
+                self.state = 91
                 self.expression()
-                self.state = 88 
+                self.state = 94 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.Div) | (1 << intel_operation_languageParser.Mod) | (1 << intel_operation_languageParser.And) | (1 << intel_operation_languageParser.Or) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Not) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
                     break
 
-            self.state = 96
+            self.state = 102
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==intel_operation_languageParser.ELSE:
-                self.state = 90
+                self.state = 96
                 self.match(intel_operation_languageParser.ELSE)
-                self.state = 92 
+                self.state = 98 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while True:
-                    self.state = 91
+                    self.state = 97
                     self.expression()
-                    self.state = 94 
+                    self.state = 100 
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
-                    if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
+                    if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.Div) | (1 << intel_operation_languageParser.Mod) | (1 << intel_operation_languageParser.And) | (1 << intel_operation_languageParser.Or) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Not) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
                         break
 
 
 
-            self.state = 98
+            self.state = 104
             self.match(intel_operation_languageParser.FI)
         except RecognitionException as re:
             localctx.exception = re
@@ -730,20 +742,27 @@ class intel_operation_languageParser ( Parser ):
         def Assign(self):
             return self.getToken(intel_operation_languageParser.Assign, 0)
 
-        def TO(self):
-            return self.getToken(intel_operation_languageParser.TO, 0)
+        def expression(self):
+            return self.getTypedRuleContext(intel_operation_languageParser.ExpressionContext,0)
+
 
         def ENDFOR(self):
             return self.getToken(intel_operation_languageParser.ENDFOR, 0)
 
+        def TO(self):
+            return self.getToken(intel_operation_languageParser.TO, 0)
+
+        def TO2(self):
+            return self.getToken(intel_operation_languageParser.TO2, 0)
+
         def INT(self):
             return self.getToken(intel_operation_languageParser.INT, 0)
 
-        def expression(self, i:int=None):
+        def forExpressionExpression(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(intel_operation_languageParser.ExpressionContext)
+                return self.getTypedRuleContexts(intel_operation_languageParser.ForExpressionExpressionContext)
             else:
-                return self.getTypedRuleContext(intel_operation_languageParser.ExpressionContext,i)
+                return self.getTypedRuleContext(intel_operation_languageParser.ForExpressionExpressionContext,i)
 
 
         def getRuleIndex(self):
@@ -773,44 +792,96 @@ class intel_operation_languageParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 100
+            self.state = 106
             self.match(intel_operation_languageParser.FOR)
-            self.state = 101
+            self.state = 107
             self.variable()
-            self.state = 102
+            self.state = 108
             self.match(intel_operation_languageParser.Assign)
-            self.state = 105
+            self.state = 111
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [intel_operation_languageParser.NAME]:
-                self.state = 103
+                self.state = 109
                 self.variable()
                 pass
             elif token in [intel_operation_languageParser.INT]:
-                self.state = 104
+                self.state = 110
                 self.match(intel_operation_languageParser.INT)
                 pass
             else:
                 raise NoViableAltException(self)
 
-            self.state = 107
-            self.match(intel_operation_languageParser.TO)
-            self.state = 108
-            self.variable()
-            self.state = 110 
+            self.state = 113
+            _la = self._input.LA(1)
+            if not(_la==intel_operation_languageParser.TO or _la==intel_operation_languageParser.TO2):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
+            self.state = 114
+            self.expression()
+            self.state = 116 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 109
-                self.expression()
-                self.state = 112 
+                self.state = 115
+                self.forExpressionExpression()
+                self.state = 118 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.Div) | (1 << intel_operation_languageParser.Mod) | (1 << intel_operation_languageParser.And) | (1 << intel_operation_languageParser.Or) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Not) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
                     break
 
-            self.state = 114
+            self.state = 120
             self.match(intel_operation_languageParser.ENDFOR)
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class ForExpressionExpressionContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def expression(self):
+            return self.getTypedRuleContext(intel_operation_languageParser.ExpressionContext,0)
+
+
+        def getRuleIndex(self):
+            return intel_operation_languageParser.RULE_forExpressionExpression
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterForExpressionExpression" ):
+                listener.enterForExpressionExpression(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitForExpressionExpression" ):
+                listener.exitForExpressionExpression(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitForExpressionExpression" ):
+                return visitor.visitForExpressionExpression(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def forExpressionExpression(self):
+
+        localctx = intel_operation_languageParser.ForExpressionExpressionContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 12, self.RULE_forExpressionExpression)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 122
+            self.expression()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -848,6 +919,13 @@ class intel_operation_languageParser ( Parser ):
                 return self.getTypedRuleContext(intel_operation_languageParser.ExpressionContext,i)
 
 
+        def doWhileExpressionExpression(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(intel_operation_languageParser.DoWhileExpressionExpressionContext)
+            else:
+                return self.getTypedRuleContext(intel_operation_languageParser.DoWhileExpressionExpressionContext,i)
+
+
         def getRuleIndex(self):
             return intel_operation_languageParser.RULE_doWhileExpression
 
@@ -871,44 +949,91 @@ class intel_operation_languageParser ( Parser ):
     def doWhileExpression(self):
 
         localctx = intel_operation_languageParser.DoWhileExpressionContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 12, self.RULE_doWhileExpression)
+        self.enterRule(localctx, 14, self.RULE_doWhileExpression)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 116
-            self.match(intel_operation_languageParser.DO)
-            self.state = 117
-            self.match(intel_operation_languageParser.WHILE)
-            self.state = 118
-            self.match(intel_operation_languageParser.LeftParen)
-            self.state = 120 
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            while True:
-                self.state = 119
-                self.expression()
-                self.state = 122 
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
-                    break
-
             self.state = 124
-            self.match(intel_operation_languageParser.RightParen)
-            self.state = 126 
+            self.match(intel_operation_languageParser.DO)
+            self.state = 125
+            self.match(intel_operation_languageParser.WHILE)
+            self.state = 126
+            self.match(intel_operation_languageParser.LeftParen)
+            self.state = 128 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 125
+                self.state = 127
                 self.expression()
-                self.state = 128 
+                self.state = 130 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.Div) | (1 << intel_operation_languageParser.Mod) | (1 << intel_operation_languageParser.And) | (1 << intel_operation_languageParser.Or) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Not) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
                     break
 
-            self.state = 130
+            self.state = 132
+            self.match(intel_operation_languageParser.RightParen)
+            self.state = 134 
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            while True:
+                self.state = 133
+                self.doWhileExpressionExpression()
+                self.state = 136 
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.Div) | (1 << intel_operation_languageParser.Mod) | (1 << intel_operation_languageParser.And) | (1 << intel_operation_languageParser.Or) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Not) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
+                    break
+
+            self.state = 138
             self.match(intel_operation_languageParser.OD)
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class DoWhileExpressionExpressionContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def expression(self):
+            return self.getTypedRuleContext(intel_operation_languageParser.ExpressionContext,0)
+
+
+        def getRuleIndex(self):
+            return intel_operation_languageParser.RULE_doWhileExpressionExpression
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterDoWhileExpressionExpression" ):
+                listener.enterDoWhileExpressionExpression(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitDoWhileExpressionExpression" ):
+                listener.exitDoWhileExpressionExpression(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitDoWhileExpressionExpression" ):
+                return visitor.visitDoWhileExpressionExpression(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def doWhileExpressionExpression(self):
+
+        localctx = intel_operation_languageParser.DoWhileExpressionExpressionContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 16, self.RULE_doWhileExpressionExpression)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 140
+            self.expression()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -933,11 +1058,11 @@ class intel_operation_languageParser ( Parser ):
         def NAME(self):
             return self.getToken(intel_operation_languageParser.NAME, 0)
 
-        def expression(self, i:int=None):
+        def functionExpressionArgument(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(intel_operation_languageParser.ExpressionContext)
+                return self.getTypedRuleContexts(intel_operation_languageParser.FunctionExpressionArgumentContext)
             else:
-                return self.getTypedRuleContext(intel_operation_languageParser.ExpressionContext,i)
+                return self.getTypedRuleContext(intel_operation_languageParser.FunctionExpressionArgumentContext,i)
 
 
         def INT(self):
@@ -966,34 +1091,93 @@ class intel_operation_languageParser ( Parser ):
     def functionExpression(self):
 
         localctx = intel_operation_languageParser.FunctionExpressionContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 14, self.RULE_functionExpression)
+        self.enterRule(localctx, 18, self.RULE_functionExpression)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 132
+            self.state = 142
             self.match(intel_operation_languageParser.NAME)
-            self.state = 134
+            self.state = 144
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==intel_operation_languageParser.INT:
-                self.state = 133
+                self.state = 143
                 self.match(intel_operation_languageParser.INT)
 
 
-            self.state = 136
+            self.state = 146
             self.match(intel_operation_languageParser.LeftParen)
-            self.state = 140
+            self.state = 150
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0):
-                self.state = 137
-                self.expression()
-                self.state = 142
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.LeftParen) | (1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.Div) | (1 << intel_operation_languageParser.Mod) | (1 << intel_operation_languageParser.And) | (1 << intel_operation_languageParser.Or) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Not) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater) | (1 << intel_operation_languageParser.IF) | (1 << intel_operation_languageParser.FOR) | (1 << intel_operation_languageParser.DO) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0):
+                self.state = 147
+                self.functionExpressionArgument()
+                self.state = 152
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 143
+            self.state = 153
             self.match(intel_operation_languageParser.RightParen)
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class FunctionExpressionArgumentContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def expression(self):
+            return self.getTypedRuleContext(intel_operation_languageParser.ExpressionContext,0)
+
+
+        def Comma(self):
+            return self.getToken(intel_operation_languageParser.Comma, 0)
+
+        def getRuleIndex(self):
+            return intel_operation_languageParser.RULE_functionExpressionArgument
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterFunctionExpressionArgument" ):
+                listener.enterFunctionExpressionArgument(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitFunctionExpressionArgument" ):
+                listener.exitFunctionExpressionArgument(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFunctionExpressionArgument" ):
+                return visitor.visitFunctionExpressionArgument(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def functionExpressionArgument(self):
+
+        localctx = intel_operation_languageParser.FunctionExpressionArgumentContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 20, self.RULE_functionExpressionArgument)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 155
+            self.expression()
+            self.state = 157
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            if _la==intel_operation_languageParser.Comma:
+                self.state = 156
+                self.match(intel_operation_languageParser.Comma)
+
+
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1045,23 +1229,23 @@ class intel_operation_languageParser ( Parser ):
     def structAccess(self):
 
         localctx = intel_operation_languageParser.StructAccessContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 16, self.RULE_structAccess)
+        self.enterRule(localctx, 22, self.RULE_structAccess)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 145
+            self.state = 159
             self.match(intel_operation_languageParser.NAME)
-            self.state = 147
+            self.state = 161
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==intel_operation_languageParser.INT:
-                self.state = 146
+                self.state = 160
                 self.match(intel_operation_languageParser.INT)
 
 
-            self.state = 149
+            self.state = 163
             self.match(intel_operation_languageParser.Dot)
-            self.state = 150
+            self.state = 164
             self.variable()
         except RecognitionException as re:
             localctx.exception = re
@@ -1118,34 +1302,34 @@ class intel_operation_languageParser ( Parser ):
     def comparison(self):
 
         localctx = intel_operation_languageParser.ComparisonContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 18, self.RULE_comparison)
+        self.enterRule(localctx, 24, self.RULE_comparison)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 154
+            self.state = 168
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [intel_operation_languageParser.NAME]:
-                self.state = 152
+                self.state = 166
                 self.variable()
                 pass
             elif token in [intel_operation_languageParser.INT]:
-                self.state = 153
+                self.state = 167
                 self.match(intel_operation_languageParser.INT)
                 pass
             else:
                 raise NoViableAltException(self)
 
-            self.state = 156
+            self.state = 170
             self.operator()
-            self.state = 159
+            self.state = 173
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [intel_operation_languageParser.NAME]:
-                self.state = 157
+                self.state = 171
                 self.variable()
                 pass
             elif token in [intel_operation_languageParser.INT]:
-                self.state = 158
+                self.state = 172
                 self.match(intel_operation_languageParser.INT)
                 pass
             else:
@@ -1176,8 +1360,11 @@ class intel_operation_languageParser ( Parser ):
             return self.getTypedRuleContext(intel_operation_languageParser.AccessoperatorContext,0)
 
 
-        def structAccess(self):
-            return self.getTypedRuleContext(intel_operation_languageParser.StructAccessContext,0)
+        def Dot(self):
+            return self.getToken(intel_operation_languageParser.Dot, 0)
+
+        def variable(self):
+            return self.getTypedRuleContext(intel_operation_languageParser.VariableContext,0)
 
 
         def getRuleIndex(self):
@@ -1203,43 +1390,40 @@ class intel_operation_languageParser ( Parser ):
     def variable(self):
 
         localctx = intel_operation_languageParser.VariableContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 20, self.RULE_variable)
+        self.enterRule(localctx, 26, self.RULE_variable)
         self._la = 0 # Token type
         try:
-            self.state = 170
+            self.enterOuterAlt(localctx, 1)
+            self.state = 176 
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,19,self._ctx)
-            if la_ == 1:
-                self.enterOuterAlt(localctx, 1)
-                self.state = 162 
+            _alt = 1
+            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
+                    self.state = 175
+                    self.match(intel_operation_languageParser.NAME)
+
+                else:
+                    raise NoViableAltException(self)
+                self.state = 178 
                 self._errHandler.sync(self)
-                _alt = 1
-                while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                    if _alt == 1:
-                        self.state = 161
-                        self.match(intel_operation_languageParser.NAME)
+                _alt = self._interp.adaptivePredict(self._input,18,self._ctx)
 
-                    else:
-                        raise NoViableAltException(self)
-                    self.state = 164 
-                    self._errHandler.sync(self)
-                    _alt = self._interp.adaptivePredict(self._input,17,self._ctx)
-
-                self.state = 167
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if _la==intel_operation_languageParser.T__0:
-                    self.state = 166
-                    self.accessoperator()
+            self.state = 181
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            if _la==intel_operation_languageParser.T__0:
+                self.state = 180
+                self.accessoperator()
 
 
-                pass
-
-            elif la_ == 2:
-                self.enterOuterAlt(localctx, 2)
-                self.state = 169
-                self.structAccess()
-                pass
+            self.state = 185
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            if _la==intel_operation_languageParser.Dot:
+                self.state = 183
+                self.match(intel_operation_languageParser.Dot)
+                self.state = 184
+                self.variable()
 
 
         except RecognitionException as re:
@@ -1290,37 +1474,37 @@ class intel_operation_languageParser ( Parser ):
     def accessoperator(self):
 
         localctx = intel_operation_languageParser.AccessoperatorContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 22, self.RULE_accessoperator)
+        self.enterRule(localctx, 28, self.RULE_accessoperator)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 172
+            self.state = 187
             self.match(intel_operation_languageParser.T__0)
-            self.state = 174 
+            self.state = 189 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 173
+                self.state = 188
                 self.accessoperatorname()
-                self.state = 176 
+                self.state = 191 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
                     break
 
-            self.state = 184
+            self.state = 199
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==intel_operation_languageParser.Colon:
-                self.state = 178
+                self.state = 193
                 self.match(intel_operation_languageParser.Colon)
-                self.state = 180 
+                self.state = 195 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while True:
-                    self.state = 179
+                    self.state = 194
                     self.accessoperatorname()
-                    self.state = 182 
+                    self.state = 197 
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
                     if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.NAME) | (1 << intel_operation_languageParser.INT))) != 0)):
@@ -1328,7 +1512,7 @@ class intel_operation_languageParser ( Parser ):
 
 
 
-            self.state = 186
+            self.state = 201
             self.match(intel_operation_languageParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -1381,23 +1565,23 @@ class intel_operation_languageParser ( Parser ):
     def accessoperatorname(self):
 
         localctx = intel_operation_languageParser.AccessoperatornameContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 24, self.RULE_accessoperatorname)
+        self.enterRule(localctx, 30, self.RULE_accessoperatorname)
         self._la = 0 # Token type
         try:
-            self.state = 193
+            self.state = 208
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [intel_operation_languageParser.NAME, intel_operation_languageParser.INT]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 190
+                self.state = 205
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
                 if token in [intel_operation_languageParser.NAME]:
-                    self.state = 188
+                    self.state = 203
                     self.variable()
                     pass
                 elif token in [intel_operation_languageParser.INT]:
-                    self.state = 189
+                    self.state = 204
                     self.match(intel_operation_languageParser.INT)
                     pass
                 else:
@@ -1406,7 +1590,7 @@ class intel_operation_languageParser ( Parser ):
                 pass
             elif token in [intel_operation_languageParser.Plus, intel_operation_languageParser.Star]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 192
+                self.state = 207
                 _la = self._input.LA(1)
                 if not(_la==intel_operation_languageParser.Plus or _la==intel_operation_languageParser.Star):
                     self._errHandler.recoverInline(self)
@@ -1444,6 +1628,12 @@ class intel_operation_languageParser ( Parser ):
         def Star(self):
             return self.getToken(intel_operation_languageParser.Star, 0)
 
+        def Div(self):
+            return self.getToken(intel_operation_languageParser.Div, 0)
+
+        def Mod(self):
+            return self.getToken(intel_operation_languageParser.Mod, 0)
+
         def Less(self):
             return self.getToken(intel_operation_languageParser.Less, 0)
 
@@ -1455,6 +1645,15 @@ class intel_operation_languageParser ( Parser ):
 
         def EqualEqual(self):
             return self.getToken(intel_operation_languageParser.EqualEqual, 0)
+
+        def And(self):
+            return self.getToken(intel_operation_languageParser.And, 0)
+
+        def Or(self):
+            return self.getToken(intel_operation_languageParser.Or, 0)
+
+        def Not(self):
+            return self.getToken(intel_operation_languageParser.Not, 0)
 
         def XOR(self):
             return self.getToken(intel_operation_languageParser.XOR, 0)
@@ -1488,13 +1687,13 @@ class intel_operation_languageParser ( Parser ):
     def operator(self):
 
         localctx = intel_operation_languageParser.OperatorContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 26, self.RULE_operator)
+        self.enterRule(localctx, 32, self.RULE_operator)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 195
+            self.state = 210
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << intel_operation_languageParser.Assign) | (1 << intel_operation_languageParser.Equal) | (1 << intel_operation_languageParser.EqualEqual) | (1 << intel_operation_languageParser.Plus) | (1 << intel_operation_languageParser.Minus) | (1 << intel_operation_languageParser.Star) | (1 << intel_operation_languageParser.Div) | (1 << intel_operation_languageParser.Mod) | (1 << intel_operation_languageParser.And) | (1 << intel_operation_languageParser.Or) | (1 << intel_operation_languageParser.AndAnd) | (1 << intel_operation_languageParser.XOR) | (1 << intel_operation_languageParser.AND) | (1 << intel_operation_languageParser.Not) | (1 << intel_operation_languageParser.Less) | (1 << intel_operation_languageParser.Greater))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
