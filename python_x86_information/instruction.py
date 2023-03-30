@@ -5,9 +5,10 @@ from typing import Union, Any
 from .sources.uops import ALL_ARCHES as ARCHES, TRANSLATION_REGISTERS, get_intr_uop_information
 
 
-
 # original code from: https://github.com/Maratyszcza/Opcodes/blob/master/opcodes/x86_64.py
 # adapted by floydZ
+
+
 class Operand:
     """An explicit instruction operand.
     :ivar type: the type of the instruction operand. Possible values are:
@@ -201,7 +202,7 @@ class Operand:
     def is_register(self):
         """Indicates whether this operand specifies a register"""
         return self.name.replace("{k}{z}", "").replace("{k}", "") \
-               in registers
+               in Operand.registers
 
     @property
     def is_memory(self):
@@ -307,9 +308,12 @@ class Instruction:
         self.isa_extensions = []
         self.encodings = []
 
-
+        # information gathered from uops.info
         self.throughput = -1
         self.latency = -1
+
+        # pseudocode representing the instruction, gathered from intel
+        self.code = ""
 
         if type(operands) == str:
             # operands in the form "rax,rbx" must be split
@@ -327,25 +331,34 @@ class Instruction:
         if type(operands) == list[Operand]:
             self.operands = operands
 
-        _, throughput, latency = get_intr_uop_infomation(name, [op.name for op in self.operands])
+        _, throughput, latency = get_intr_uop_information(name, [op.name for op in self.operands])
         if type(throughput) == list:
             assert len(throughput) == len(latency)
             logging.warning("found multiple instructions for ", name)
             throughput = throughput[0]
             latency = latency[0]
 
-        self.throughput = throughput
-        self.latency = latency
+        if throughput is not None:
+            self.throughput = throughput
+            self.latency = latency
 
     def __str__(self):
         """Returns string representation of the instruction form and its operands in Intel-style assembly"""
         if self.operands:
-            return self.name + " " + ", ".join(operand.type for operand in self.operands)
+            return self.name + " " + ", ".join(operand.name for operand in self.operands)
         else:
             return self.name
 
     def __repr__(self):
         return str(self)
+
+    def print_information(self):
+        """
+        prints all internal information about this instruction
+        Returns: Nothing
+
+        """
+        print(self.name, self.throughput, self.latency)
 
     def nr_operands(self) -> int:
         return len(self.operands)

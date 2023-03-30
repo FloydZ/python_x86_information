@@ -10,14 +10,13 @@ let
   };
 in
 
-
-
 mach-nix.nixpkgs.mkShell {
   buildInputs = [
-     wget
-	 antlr4_8
-     pyEnv
-	 python3Packages.antlr4-python3-runtime
+    wget
+    virtualenv
+	antlr4_8
+    pyEnv
+	python3Packages.antlr4-python3-runtime
   ];
   venvDir = "venv3";
 
@@ -33,6 +32,6 @@ mach-nix.nixpkgs.mkShell {
   '';
 
    postShellHook = ''
-    ln -sf ${customPython}/lib/python3/site-packages/* ./venv/lib/python3/site-packages
+    ln -sf ${pyEnv}/lib/python3/site-packages/* ./venv/lib/python3/site-packages
   '';
 }

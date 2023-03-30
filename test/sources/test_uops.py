@@ -1,4 +1,5 @@
-from python_x86_information.sources.uops import CCTX, get_intr_uop_information, get_intr_uop_matches, get_intr_uop_extended_information
+from python_x86_information.sources.uops import CCTX, get_intr_uop_information, get_intr_uop_matches, \
+    get_intr_uop_extended_information
 import pprint
 
 # TODO
@@ -20,7 +21,6 @@ def test_get_intr_uop_information():
     pprint.pprint(instruction)
     pprint.pprint(throughput)
     pprint.pprint(latency)
-
 
     instruction, throughput, latency_min, latency_max = get_intr_uop_extended_information("adc", ["r64", "rax"])
     pprint.pprint(instruction)

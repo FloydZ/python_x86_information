@@ -428,7 +428,7 @@ def parse_uops_info(path: str):
 
     EXAMPLES::
 
-        >>> from python_x86_information import parse_uops_info
+        >>> from python_x86_information.sources.uops import parse_uops_info
         >>> _, table = parse_uops_info("deps/instructions.xml")
         >>> print(table)
 
