@@ -10,6 +10,8 @@ expression
 	| forExpression
 	| doWhileExpression
 	| functionExpression
+	| caseExpression
+    | defineExpression
 	| ternaryoperator
 	| variable
 	| operator
@@ -81,7 +83,45 @@ functionExpressionArgument
     :  expression Comma?
     ;
 
+/*
+    CASE (bla) OF
+    foo1 : e1
+    foo2 : d2
+    ESAC
+*/
+caseExpression
+    : CASE LeftParen? expression RightParen? OF caseExpressionExpression+ ESAC
+    ;
 
+/*
+    simlify the analysis
+*/
+caseExpressionExpression
+    : expression Colon expression
+    ;
+
+/*
+DEFINE SELECT4(src, control) {
+	CASE(control[1:0]) OF
+	0:	tmp[31:0] := src[31:0]
+	1:	tmp[31:0] := src[63:32]
+	2:	tmp[31:0] := src[95:64]
+	3:	tmp[31:0] := src[127:96]
+	ESAC
+	RETURN tmp[31:0]
+}
+*/
+defineExpression
+    : DEFINE  functionExpression CurlyLeft  expression+ RETURN returnExpression CurlyRight
+    ;
+
+returnExpression
+    : expression
+    ;
+
+/*
+
+*/
 comparison
 	: ( variable | INT ) operator ( variable | INT )
 	;
@@ -127,6 +167,8 @@ operator
 
 LeftParen : '(';
 RightParen : ')';
+CurlyLeft : '{';
+CurlyRight : '}';
 Question : '?';
 Colon : ':';
 Comma : ',';
@@ -166,6 +208,11 @@ ENDFOR : 'ENDFOR';
 DO : 'DO';
 WHILE : 'WHILE';
 OD : 'OD';
+CASE : 'CASE';
+ESAC : 'ESAC';
+OF : 'OF';
+DEFINE : 'DEFINE';
+RETURN : 'RETURN';
 
 
 NAME
