@@ -1,4 +1,4 @@
-# Generated from intel_operation_language.g4 by ANTLR 4.8
+# Generated from intel_operation_language.g4 by ANTLR 4.12.0
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .intel_operation_languageParser import intel_operation_languageParser
@@ -26,12 +26,12 @@ class intel_operation_languageListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by intel_operation_languageParser#definition.
-    def enterDefinition(self, ctx:intel_operation_languageParser.DefinitionContext):
+    # Enter a parse tree produced by intel_operation_languageParser#definitionExpression.
+    def enterDefinitionExpression(self, ctx:intel_operation_languageParser.DefinitionExpressionContext):
         pass
 
-    # Exit a parse tree produced by intel_operation_languageParser#definition.
-    def exitDefinition(self, ctx:intel_operation_languageParser.DefinitionContext):
+    # Exit a parse tree produced by intel_operation_languageParser#definitionExpression.
+    def exitDefinitionExpression(self, ctx:intel_operation_languageParser.DefinitionExpressionContext):
         pass
 
 
@@ -107,12 +107,39 @@ class intel_operation_languageListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by intel_operation_languageParser#structAccess.
-    def enterStructAccess(self, ctx:intel_operation_languageParser.StructAccessContext):
+    # Enter a parse tree produced by intel_operation_languageParser#caseExpression.
+    def enterCaseExpression(self, ctx:intel_operation_languageParser.CaseExpressionContext):
         pass
 
-    # Exit a parse tree produced by intel_operation_languageParser#structAccess.
-    def exitStructAccess(self, ctx:intel_operation_languageParser.StructAccessContext):
+    # Exit a parse tree produced by intel_operation_languageParser#caseExpression.
+    def exitCaseExpression(self, ctx:intel_operation_languageParser.CaseExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#caseExpressionExpression.
+    def enterCaseExpressionExpression(self, ctx:intel_operation_languageParser.CaseExpressionExpressionContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#caseExpressionExpression.
+    def exitCaseExpressionExpression(self, ctx:intel_operation_languageParser.CaseExpressionExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#defineExpression.
+    def enterDefineExpression(self, ctx:intel_operation_languageParser.DefineExpressionContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#defineExpression.
+    def exitDefineExpression(self, ctx:intel_operation_languageParser.DefineExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by intel_operation_languageParser#returnExpression.
+    def enterReturnExpression(self, ctx:intel_operation_languageParser.ReturnExpressionContext):
+        pass
+
+    # Exit a parse tree produced by intel_operation_languageParser#returnExpression.
+    def exitReturnExpression(self, ctx:intel_operation_languageParser.ReturnExpressionContext):
         pass
 
 

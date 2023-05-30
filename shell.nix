@@ -14,7 +14,7 @@ mach-nix.nixpkgs.mkShell {
   buildInputs = [
     wget
     virtualenv
-	antlr4_8
+	antlr4_12
     pyEnv
 	python3Packages.antlr4-python3-runtime
   ];

@@ -1,4 +1,4 @@
-# Generated from intel_operation_language.g4 by ANTLR 4.8
+# Generated from intel_operation_language.g4 by ANTLR 4.12.0
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .intel_operation_languageParser import intel_operation_languageParser
@@ -19,8 +19,8 @@ class intel_operation_languageVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by intel_operation_languageParser#definition.
-    def visitDefinition(self, ctx:intel_operation_languageParser.DefinitionContext):
+    # Visit a parse tree produced by intel_operation_languageParser#definitionExpression.
+    def visitDefinitionExpression(self, ctx:intel_operation_languageParser.DefinitionExpressionContext):
         return self.visitChildren(ctx)
 
 
@@ -64,8 +64,23 @@ class intel_operation_languageVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by intel_operation_languageParser#structAccess.
-    def visitStructAccess(self, ctx:intel_operation_languageParser.StructAccessContext):
+    # Visit a parse tree produced by intel_operation_languageParser#caseExpression.
+    def visitCaseExpression(self, ctx:intel_operation_languageParser.CaseExpressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by intel_operation_languageParser#caseExpressionExpression.
+    def visitCaseExpressionExpression(self, ctx:intel_operation_languageParser.CaseExpressionExpressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by intel_operation_languageParser#defineExpression.
+    def visitDefineExpression(self, ctx:intel_operation_languageParser.DefineExpressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by intel_operation_languageParser#returnExpression.
+    def visitReturnExpression(self, ctx:intel_operation_languageParser.ReturnExpressionContext):
         return self.visitChildren(ctx)
 
 

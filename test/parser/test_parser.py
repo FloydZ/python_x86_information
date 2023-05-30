@@ -48,6 +48,12 @@ def run(input: str):
 
 
 def test_main():
+    """
+    Tests some arbitrary clauses.
+
+    Returns: Nothing
+
+    """
     if run("tmp := tmp"):
         return
 
