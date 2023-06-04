@@ -1,7 +1,6 @@
 pytest
+pip
 pycca
 opcodes
-python-lsp-server
 sphinx
 sphinx_bootstrap_theme
-pip

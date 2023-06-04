@@ -1,4 +1,6 @@
 from pycca.asm import mkfunction
+from typing import Union, Any
+
 
 def exec_instructions(instr: Union[str, list[str]],
                       in_registers: dict[str, Any] = {},
