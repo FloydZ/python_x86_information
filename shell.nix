@@ -9,7 +9,6 @@ let
     requirements = builtins.readFile ./requirements.txt;
   };
 in
-
 mach-nix.nixpkgs.mkShell {
   buildInputs = [
     wget
