@@ -4,3 +4,4 @@ pycca
 opcodes
 sphinx
 sphinx_bootstrap_theme
+z3

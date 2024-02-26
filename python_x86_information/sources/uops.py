@@ -3,7 +3,6 @@ import xml.etree.ElementTree as ET
 import re
 import logging
 
-
 # Helper dictionary to translate from registers names to generic names.
 # NOTE:
 #   The dictionary can also handle uppercase inputs
@@ -12,6 +11,11 @@ import logging
 #   "r64" = TRANSLATION["rax"]
 #   "r16" = TRANSLATION["sp"]
 TRANSLATION_REGISTERS = {
+    "m32": "m32",
+    "m64": "m64",
+    "m128": "m128",
+    "m256": "m256",
+
     "r8": "r8",
     "al": "r8",
     "ah": "r8",
@@ -317,16 +321,15 @@ TRANSLATION_REGISTERS = {
     "ZMM31": "zmm",
 }
 
-
 TRANSLATION_IMMEDIATE = {
-    "i8": "imm8",
-    "i16": "imm16",
-    "i32": "imm32",
-    "i64": "imm64",
-    "imm8": "imm8",
-    "imm16": "imm16",
-    "imm32": "imm32",
-    "imm64": "imm64",
+    "i8": "i8",
+    "i16": "i16",
+    "i32": "i32",
+    "i64": "i64",
+    "imm8": "i8",
+    "imm16": "i16",
+    "imm32": "i32",
+    "imm64": "i64",
 }
 
 TRANSLATION = {}
@@ -353,15 +356,17 @@ INTEL_TRANSLATION = {
 # All architectures measured by uops.info. This is just here for consistent
 # ordering
 ALL_ARCHES = ['CON', 'WOL', 'NHM', 'WSM', 'SNB', 'IVB', 'HSW', 'BDW', 'SKL',
-              'SKX', 'KBL', 'CFL', 'CNL', 'ICL', 'ZEN+', 'ZEN2']
+              'SKX', 'KBL', 'CFL', 'CNL', 'ICL', 'ZEN+', 'ZEN2', 'ZEN3', 'ZEN4']
 
 # Sentinel value for unknown latency
 MAX_LATENCY = 1e100
+
 
 class Context:
     """
     Helper class for parsing uops intrinsic guide.
     """
+
     def __init__(self, **kwargs):
         self.__dict__.update(**kwargs)
 
@@ -379,10 +384,9 @@ INTR_ARG_REMAP = {
     'vm64x': 'vsib_xmm',
     'vm64y': 'vsib_ymm',
     'vm64z': 'vsib_zmm',
-    'mib':   'm192',
-    'imm8':  'i8',
+    'mib': 'm192',
+    'imm8': 'i8',
 }
-
 
 # Extra argument options: intrinsic register args can match memory args of the
 # same size, but not vice versa--if an intrinsic has a memory arg, it's generally
@@ -391,28 +395,27 @@ INTR_ARG_EXTRA = {
     'r16': {'m16', 'i16'},
     'r32': {'m32', 'i32'},
     'r64': {'m64', 'i64'},
-    'r8':  {'m8', 'i8'},
-    'i8':  {'r8'},  # Special case for ror/rol reg, cl
+    'r8': {'m8', 'i8'},
+    'i8': {'r8'},  # Special case for ror/rol reg, cl
     'xmm': {'m128'},
     'ymm': {'m256'},
     'zmm': {'m512'},
 }
 
-
 UOP_ARG_REMAP = {
-    'al':        'r8',
-    'ax':        'r16',
-    'cl':        'r8',
-    'dx':        'r16',
-    'eax':       'r32',
-    'rax':       'r64',
-    'm32_1to2':  'm64',
-    'm32_1to4':  'm128',
-    'm32_1to8':  'm256',
+    'al': 'r8',
+    'ax': 'r16',
+    'cl': 'r8',
+    'dx': 'r16',
+    'eax': 'r32',
+    'rax': 'r64',
+    'm32_1to2': 'm64',
+    'm32_1to4': 'm128',
+    'm32_1to8': 'm256',
     'm32_1to16': 'm512',
-    'm64_1to2':  'm128',
-    'm64_1to4':  'm256',
-    'm64_1to8':  'm512',
+    'm64_1to2': 'm128',
+    'm64_1to4': 'm256',
+    'm64_1to8': 'm512',
 }
 
 
@@ -508,7 +511,13 @@ def parse_uops_info(path: str):
     return [version, uops_info]
 
 
-def get_intr_uop_matches(ctx: Context, mnem: str, target_form: Union[str, list[str]], exact=True):
+def get_intr_uop_matches(
+        ctx: Context,
+        mnem: str,
+        target_form:
+        Union[str, list[str]],
+        exact=True
+) -> Union[dict, list]:
     """
     Get a list of matching uop instruction forms for the given mnemonic
     Returns a list of matching instructions. If no instruction is found, an
@@ -516,7 +525,7 @@ def get_intr_uop_matches(ctx: Context, mnem: str, target_form: Union[str, list[s
 
 
     INPUT:
-    - ``ctx`` -- context
+    - ``ctx`` -- xml file where the data is loaded from
     - ``mnem`` -- mnemonic to analyse
     - ``target_form`` -- arguments of the mnemonic
     - ``exact`` --
@@ -589,13 +598,12 @@ def get_intr_uop_matches(ctx: Context, mnem: str, target_form: Union[str, list[s
         return []
 
     # translate to list
-    if type(target_form) == str:
+    if isinstance(target_form, str):
         target_form = target_form.split(',')
 
     for arg in target_form:
-
-        # if the argumetn is a number replace it with i8
-        if type(arg) == int:
+        # if the argument is a number replace it with i8
+        if isinstance(arg, int):
             arg = "i8"
         else:
             try:
@@ -639,7 +647,7 @@ def get_intr_uop_matches(ctx: Context, mnem: str, target_form: Union[str, list[s
             # works in our favor, for intrinsics like _mm256_cmpge_epi8_mask that
             # don't show an immediate in the instruction, since the immediate is
             # implied by the intrinsic (i.e. _MM_CMPINT_NLT). OK maybe this isn't
-            # always beneficial but it will only lead to false positives...
+            # always beneficial, but it will only lead to false positives...
             # if all(arg in opts for [arg, opts] in zip(uops_args, intr_args)):
             #    matching_forms.append(form)
             same = True
@@ -656,14 +664,8 @@ def get_intr_uop_matches(ctx: Context, mnem: str, target_form: Union[str, list[s
     return matching_forms
 
 
-
-
-
-_, data_uops = parse_uops_info("deps/instructions.xml")
-CCTX = Context(data_source="", uops_info=data_uops)
-
 def get_intr_uop_information(mnem: str, target_form: Union[str, list[str]],
-                             ARCH="ZEN2", exact=True):
+                             arch: str = "ZEN2", exact=True):
     """
     Returns the instruction and expected cycles to execute the instruction on the
     given arch. If valid instructions are found, which maches the mnemonic ALL will be returned.
@@ -706,7 +708,7 @@ def get_intr_uop_information(mnem: str, target_form: Union[str, list[str]],
         [1.0, 1.0]
 
     """
-    if ARCH not in ALL_ARCHES:
+    if arch not in ALL_ARCHES:
         logging.warning("invalid arch")
         return None, None, None
 
@@ -715,14 +717,13 @@ def get_intr_uop_information(mnem: str, target_form: Union[str, list[str]],
         logging.info("no instruction found")
         return None, None, None
 
-    throughput = [float(a['arch'][ARCH][1]) for a in instr]
-    latency = [float(a['arch'][ARCH][2][0][0]) for a in instr]
+    throughput = [float(a['arch'][arch][1]) for a in instr]
+    latency = [float(a['arch'][arch][2][0][0]) for a in instr]
     return instr, throughput, latency
 
 
-
 def get_intr_uop_extended_information(mnem: str, target_form: Union[str, list[str]],
-                             ARCH="ZEN2", exact=True):
+                                      arch="ZEN2", exact=True):
     """
     Returns the instruction and expected cycles to execute the instruction on the
     given arch. If valid instructions are found, which maches the mnemonic, ALL will be returned.
@@ -766,7 +767,7 @@ def get_intr_uop_extended_information(mnem: str, target_form: Union[str, list[st
         [1.0, 1.0]
 
     """
-    if ARCH not in ALL_ARCHES:
+    if arch not in ALL_ARCHES:
         logging.warning("invalid arch")
         return None, None, None, None
 
@@ -775,9 +776,9 @@ def get_intr_uop_extended_information(mnem: str, target_form: Union[str, list[st
         logging.info("no instruction found")
         return None, None, None, None
 
-    throughput = [float(a['arch'][ARCH][1]) for a in instr]
-    latency_min = [float(a['arch'][ARCH][2][0][0]) for a in instr]
-    latency_max = [float(a['arch'][ARCH][2][1][0]) for a in instr]
+    throughput = [float(a['arch'][arch][1]) for a in instr]
+    latency_min = [float(a['arch'][arch][2][0][0]) for a in instr]
+    latency_max = [float(a['arch'][arch][2][1][0]) for a in instr]
 
     assert len(throughput) == len(latency_max) == len(latency_min)
     if len(throughput) == 1:
@@ -795,3 +796,7 @@ def get_uops_info(ARCH=""):
     """
     global CCTX
     return CCTX
+
+
+_, data_uops = parse_uops_info("../../deps/instructions.xml")
+CCTX = Context(data_source="", uops_info=data_uops)

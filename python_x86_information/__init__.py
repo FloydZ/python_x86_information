@@ -9,11 +9,8 @@ __email__ = "floyd.zweydinger+github@rub.de"
 __status__ = "Development"
 
 
-from .parser.intel_operation_languageParser import  intel_operation_languageParser
-from .parser.intel_operation_languageLexer import intel_operation_languageLexer
-from .parser.intel_operation_languageListener import  intel_operation_languageListener
-from .parser.intel_operation_languageVisitor import intel_operation_languageVisitor
 from .sources.uops import ALL_ARCHES as ARCHES, get_uops_info, get_intr_uop_information
 from .sources.intel import *
+from .sources.opcode import get_instruction_set
 from .information import *
 from .instruction import *
