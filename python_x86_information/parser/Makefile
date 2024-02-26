@@ -1,4 +1,0 @@
-all:
-	antlr -Dlanguage=Python3 -visitor intel_operation_language.g4 
-clean:
-	rm intel_operation_language.interp intel_operation_languageLexer.interp intel_operation_languageLexer.py intel_operation_languageLexer.tokens intel_operation_languageListener.py intel_operation_languageParser.py intel_operation_languageVisitor.py intel_operation_language.tokens

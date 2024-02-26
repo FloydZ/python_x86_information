@@ -1,8 +1,0 @@
-FOR j := 0 to 3
-	tmp1.word := Signed(SignExtend16(__A.byte[4*j]) * ZeroExtend16(__B.byte[4*j]))
-	tmp2.word := Signed(SignExtend16(__A.byte[4*j+1]) * ZeroExtend16(__B.byte[4*j+1]))
-	tmp3.word := Signed(SignExtend16(__A.byte[4*j+2]) * ZeroExtend16(__B.byte[4*j+2]))
-	tmp4.word := Signed(SignExtend16(__A.byte[4*j+3]) * ZeroExtend16(__B.byte[4*j+3]))
-	dst.dword[j] := SIGNED_DWORD_SATURATE(__W.dword[j] + tmp1 + tmp2 + tmp3 + tmp4)
-ENDFOR
-dst[MAX:128] := 0

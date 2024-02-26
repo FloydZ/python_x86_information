@@ -1,5 +1,6 @@
 from .sources.intel import get_intrinsics_guide
 
+
 def information(mnemonic: str, arg=None, arch=None):
     """
     Receive useful information about an instruction.

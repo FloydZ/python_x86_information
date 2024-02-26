@@ -1,5 +1,6 @@
 from python_x86_information.information import information
 
+
 def test_information():
     """
     test.in some specific versions of `adc``

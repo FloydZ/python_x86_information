@@ -1,4 +1,0 @@
-from .intel_operation_languageParser import  intel_operation_languageParser
-from .intel_operation_languageLexer import intel_operation_languageLexer
-from .intel_operation_languageListener import  intel_operation_languageListener
-from .intel_operation_languageVisitor import intel_operation_languageVisitor

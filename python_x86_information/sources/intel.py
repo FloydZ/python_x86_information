@@ -2,6 +2,7 @@ from typing import Union
 import xml.etree.ElementTree as ET
 import logging
 
+
 def parse_intrinsics_guide(path: str):
     """
     SRC: https://github.com/zwegner/x86-info-term/blob/master/x86_info_term.py
@@ -89,9 +90,6 @@ def transform_intrinsics_guide(table, tech=None):
     return ret
 
 
-
-
-
 def find_in_instruction_set(instruction_set: dict, instr: str,
                             target_form: Union[str, list[str]]):
     """
@@ -175,5 +173,3 @@ def get_intrinsics_guide(tech=None):
 
     global data_intr_
     return transform_intrinsics_guide(data_intr_, tech=tech)
-
-

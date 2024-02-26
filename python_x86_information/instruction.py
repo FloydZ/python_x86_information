@@ -1,16 +1,16 @@
-#! /usr/bin/python3
+#!/usr/bin/python3
 import ctypes
 import logging
 from typing import Union, Any
 from .sources.uops import ALL_ARCHES as ARCHES, TRANSLATION_REGISTERS, get_intr_uop_information
 
 
-# original code from: https://github.com/Maratyszcza/Opcodes/blob/master/opcodes/x86_64.py
-# adapted by floydZ
-
-
 class Operand:
     """An explicit instruction operand.
+
+    original code from: https://github.com/Maratyszcza/Opcodes/blob/master/opcodes/x86_64.py
+    adapted by floydZ
+
     :ivar type: the type of the instruction operand. Possible values are:
         "1"
             The constant value `1`.
